@@ -1,0 +1,30 @@
+# MyKey — usemykey.com
+
+> MyKey is an offline-first password vault sold by 2351485 ALBERTA INC. (Calgary, Alberta, Canada). It stores passwords in one encrypted file (a "vault") on the user's own devices. There is no account, no server, and no network access from the app. One master password opens the vault; 12 recovery words are the spare key. Desktop (Python) and phone/web (PWA + Android) clients share the same Vault v3 format.
+
+## Facts
+
+- Price: free up to 50 passwords with all security features. A one-time licence (pay-what-you-want, US$29 floor, US$49 suggested) unlocks unlimited passwords and a pool of 20 connections (devices + agent keys + browsers). Free pool: 4 connections. Optional patron tip US$5/mo or US$3/mo unlocks nothing.
+- Licence delivery: a signed licence key is emailed after purchase and pasted into the app once. It is stored inside the encrypted vault and works offline; there is no activation server.
+- Licence recovery: the owner emails info@aimlds.org with the purchase email, payment date, and date of birth; on a match the key is re-sent to the email on file only.
+- Security model: AES-256-GCM encryption, Argon2id key derivation, per-entry keys, BIP-39 recovery words. Backup packages need the recovery words plus a separate 8-word backup code outside the app. Sign-in codes (TOTP) are stored in the vault and are never exposed to agent keys.
+- Agent access (desktop): a human can issue a separate, scoped, revocable agent key; every use is written to a tamper-evident log.
+- Privacy: the app collects nothing and makes no network calls. Sync uses the user's own cloud folder and carries only the encrypted vault.
+- Support: info@aimlds.org
+
+## Pages
+
+- [Home](https://usemykey.com/): what MyKey is, how it works, pricing summary.
+- [Download](https://usemykey.com/download): Android APK (direct download), desktop app via GitHub, installable web app instructions.
+- [Buy a licence](https://usemykey.com/buy): free vs licensed, how the licence key works, patron tip.
+- [Recover my licence](https://usemykey.com/recover): the licence recovery steps.
+- [Support & FAQ](https://usemykey.com/support): how MyKey works and common questions (mirrors the in-app help).
+- [Privacy](https://usemykey.com/privacy): the no-collection policy and the published transport audit.
+- [Terms](https://usemykey.com/terms): plain-words summary of the Product Terms; liability capped at the amount paid; venue Calgary, Alberta.
+
+## Source
+
+- Desktop engine: https://github.com/nrupala/mykey
+- Phone / web client: https://github.com/nrupala/mykey-mobile
+- This site: https://github.com/nrupala/usemykey-site
+- Transport security audit: https://github.com/nrupala/mykey/blob/main/docs/TRANSPORT_SECURITY.md

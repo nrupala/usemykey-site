@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MyKey privacy — we collect nothing</title>
+<meta name="description" content="MyKey collects nothing. The app makes no network calls, has no account and no analytics, and your vault never leaves your devices except inside your own cloud folder, encrypted.">
+<link rel="canonical" href="https://usemykey.com/privacy">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MyKey">
+<meta property="og:title" content="MyKey privacy">
+<meta property="og:description" content="We collect nothing — because the app is built so there is nothing it could send us.">
+<meta property="og:url" content="https://usemykey.com/privacy">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="logo" href="/">My<span>Key</span></a>
+  <nav class="main">
+    <a href="/download">Download</a>
+    <a href="/buy">Buy a licence</a>
+    <a href="/support">Support</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+  </nav>
+</div></header>
+<main><div class="wrap">
+
+<h1>We collect nothing</h1>
+<p class="lede">This is a short page, because the honest answer is short: MyKey has no account, no sign-in, and no server. The app makes no network calls at all — this is checked by automated tests in every release.</p>
+
+<h2>What that means, point by point</h2>
+<ul>
+  <li><strong>Your passwords</strong> are encrypted on your device with a key made from your master password. That key never leaves your device. We have no copy of your password, your recovery words, or your vault.</li>
+  <li><strong>No analytics, no tracking, no telemetry.</strong> The app does not report usage, crashes, or anything else to us or to anyone.</li>
+  <li><strong>Sync</strong> travels through a cloud folder <em>you</em> chose, as an encrypted file. Your cloud provider sees that a file exists, its size, and when it changed — never its contents.</li>
+  <li><strong>The Android app</strong> does not even request the internet permission.</li>
+  <li><strong>This website</strong> is a set of static pages. It sets no cookies and runs no trackers.</li>
+  <li><strong>Buying a licence:</strong> when checkout is open, payments are processed by Paddle as merchant of record. We receive your email address (to send your licence key) and the purchase details our licence records need — never your card details.</li>
+  <li><strong>Emailing support</strong> is the one time we see anything about you, and it is the email you chose to send.</li>
+</ul>
+
+<h2>Check it yourself</h2>
+<p>The full transport audit — every path your data can move along, what protects it, and what a cloud provider can and cannot see — is published with the app: <a href="https://github.com/nrupala/mykey/blob/main/docs/TRANSPORT_SECURITY.md">TRANSPORT_SECURITY.md</a>. The source code is public for inspection: <a href="https://github.com/nrupala/mykey">desktop</a> and <a href="https://github.com/nrupala/mykey-mobile">phone/web</a>.</p>
+<p>Privacy questions: <a href="mailto:info@aimlds.org">info@aimlds.org</a>.</p>
+
+</div></main>
+<footer class="site"><div class="wrap">
+  <nav>
+    <a href="/download">Download</a>
+    <a href="/buy">Buy a licence</a>
+    <a href="/recover">Recover my licence</a>
+    <a href="/support">Support &amp; FAQ</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+  </nav>
+  <p>MyKey is sold by <strong>2351485 ALBERTA INC.</strong>, Calgary, Alberta, Canada. Support: <a href="mailto:info@aimlds.org">info@aimlds.org</a></p>
+  <p>Owned by <a href="https://nrupalakolkar.com">Nrupal Akolkar</a> · Built with <a href="https://muse.ai/join">Muse by Meta</a> — join Muse, then redeem code <strong>101EEK</strong> in Settings within 48 hours of joining and we both earn tokens.</p>
+</div></footer>
+</body>
+</html>

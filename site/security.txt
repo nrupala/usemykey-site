@@ -1,0 +1,5 @@
+Contact: mailto:info@aimlds.org
+Expires: 2027-10-13T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://usemykey.com/.well-known/security.txt
+Policy: https://github.com/nrupala/mykey/blob/main/SECURITY.md

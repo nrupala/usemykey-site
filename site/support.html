@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MyKey support &amp; FAQ</title>
+<meta name="description" content="How MyKey works and answers to common questions: recovery words, sync through your own cloud, two-key backups, importing from your browser, and getting help at info@aimlds.org.">
+<link rel="canonical" href="https://usemykey.com/support">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MyKey">
+<meta property="og:title" content="MyKey support &amp; FAQ">
+<meta property="og:description" content="How MyKey works, and the answers people ask for most.">
+<meta property="og:url" content="https://usemykey.com/support">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="logo" href="/">My<span>Key</span></a>
+  <nav class="main">
+    <a href="/download">Download</a>
+    <a href="/buy">Buy a licence</a>
+    <a href="/support">Support</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+  </nav>
+</div></header>
+<main><div class="wrap">
+
+<h1>Support &amp; FAQ</h1>
+<p class="lede">The same help text lives inside the app, so it works offline too. For anything else, email <a href="mailto:info@aimlds.org">info@aimlds.org</a>.</p>
+
+<h2>How MyKey works, in brief</h2>
+<ul>
+  <li>All your passwords live in one locked file, called a <strong>vault</strong>, on your device.</li>
+  <li>One <strong>master password</strong> (at least 12 characters) opens it. Nothing else can — nobody can reset it for you, and there is no back door.</li>
+  <li>Your <strong>12 recovery words</strong> are a spare key. Write them on paper and keep the paper safe.</li>
+  <li>Each entry can hold a service name, username, password, website, notes, tags, and a sign-in code setup.</li>
+  <li>Passwords MyKey makes for you are at least 16 characters.</li>
+  <li>Each password remembers when it was set; after 180 days (you can change this, or choose Never) the entry suggests a change.</li>
+  <li>A copied password clears itself — after 1 minute by default; on desktop you can set the wait, from 60 seconds up to 5 minutes. Locking clears it at once.</li>
+</ul>
+
+<h2>Common questions</h2>
+
+<details><summary>I forgot my master password. What now?</summary>
+<p>Use your recovery words. On the locked screen, choose "Use my recovery phrase instead", type the 12 words in order, and the vault opens. Then set a new master password in Settings. If you have neither the password nor the words, the vault cannot be opened — by anyone, including us. That is the honest cost of a vault nobody else can break into.</p>
+</details>
+
+<details><summary>I lost my phone. How do I get my passwords back?</summary>
+<p>On your new device, install MyKey, then either open your vault file (if a copy is in your cloud) with your master password, or restore from a backup package — outside the app that takes your recovery words <em>and</em> the backup code from when you exported it. Then, in the desktop app, revoke the lost phone's device entry so new backup packages leave it out.</p>
+</details>
+
+<details><summary>Does MyKey work without internet?</summary>
+<p>Yes, fully. There is no account, no sign-in, and no server. If you use a cloud folder, your cloud app moves the file when it has a connection; MyKey itself never connects anywhere.</p>
+</details>
+
+<details><summary>Can the company read my passwords?</summary>
+<p>No. Your vault is scrambled on your device with a key made from your master password, and that key never leaves your device. We have no copy of your password, your recovery words, or your vault. There is nothing for us to read, hand over, or leak.</p>
+</details>
+
+<details><summary>How do I sync between my phone and computer?</summary>
+<p>MyKey has no server of its own — your own cloud carries the file. On a computer, point MyKey at a folder your cloud app already syncs. On Android there is no folder picker, so you save the vault file into your cloud app and open it from there on the other device; the app says this plainly in Settings. The file that travels is always the scrambled vault. If the vault changes on two devices at once, MyKey keeps both copies and tells you — it never silently overwrites.</p>
+</details>
+
+<details><summary>What is a backup package? Why does it need two things to open?</summary>
+<p>A backup package is one encrypted file (ending in .mykeybak) holding your whole vault. On a device you set up, it opens with that device's own key. Anywhere else, opening it needs your recovery words <em>and</em> a backup code — 8 words shown once, at the moment you export, and never stored. Write the code down somewhere different from your recovery words. Words alone cannot open a new package, and the code alone cannot either: one lost paper is not the whole story. Older packages open with the words alone and are marked LEGACY so you know.</p>
+</details>
+
+<details><summary>How do I bring my passwords from Chrome or Firefox?</summary>
+<p>Export a CSV file from the browser (Chrome: Settings → Autofill → Password Manager → Settings → Export. Firefox: Settings → Privacy &amp; Security → Saved Logins → the menu → Export Logins). In MyKey, choose import and pick the file. Chrome-family and Firefox files are recognised on their own; other files let you match the columns by hand. MyKey shows you what it found before importing, and asks about duplicates. When you finish, delete the CSV file — until it is inside MyKey, it is a readable list of your passwords.</p>
+</details>
+
+<details><summary>How do I get my passwords out of MyKey?</summary>
+<p>The safe way is a backup package (above) — it stays scrambled. MyKey can also export a readable CSV file, for moving into another app, but only after a warning and a deliberate confirmation: anyone holding that file can read every password. Use it, then delete it.</p>
+</details>
+
+<details><summary>What if someone steals my vault file?</summary>
+<p>They have a scrambled file they cannot read. Opening it needs your master password or your recovery words, and guessing is slowed down on purpose by the way the key is made. A long master password is what protects you here — that is why MyKey asks for at least 12 characters.</p>
+</details>
+
+<details><summary>My fingerprint stopped working. What do I do?</summary>
+<p>Use your master password — it always works. Then check your fingerprint is still set up on the phone. If you removed and re-added fingerprints, turn fingerprint unlock off in Settings and on again so it matches the phone.</p>
+</details>
+
+<details><summary>What is an agent key? Do I need one?</summary>
+<p>Probably not. In the desktop app you can give a program you trust — like an AI assistant — its own limited key, so it can read only the entries you pick, never your sign-in codes, and never with your master password. You create it, you can revoke it any time, and every use is logged. Agents are off unless you create a key.</p>
+</details>
+
+<details><summary>I lost my licence key. Can I get it back?</summary>
+<p>Yes — see <a href="/recover">Recover my licence</a> for the exact steps.</p>
+</details>
+
+<h2>Still stuck?</h2>
+<p>Email <a href="mailto:info@aimlds.org">info@aimlds.org</a>. Support is provided by 2351485 ALBERTA INC., Calgary, Alberta, Canada.</p>
+
+</div></main>
+<footer class="site"><div class="wrap">
+  <nav>
+    <a href="/download">Download</a>
+    <a href="/buy">Buy a licence</a>
+    <a href="/recover">Recover my licence</a>
+    <a href="/support">Support &amp; FAQ</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+  </nav>
+  <p>MyKey is sold by <strong>2351485 ALBERTA INC.</strong>, Calgary, Alberta, Canada. Support: <a href="mailto:info@aimlds.org">info@aimlds.org</a></p>
+  <p>Owned by <a href="https://nrupalakolkar.com">Nrupal Akolkar</a> · Built with <a href="https://muse.ai/join">Muse by Meta</a> — join Muse, then redeem code <strong>101EEK</strong> in Settings within 48 hours of joining and we both earn tokens.</p>
+</div></footer>
+</body>
+</html>
