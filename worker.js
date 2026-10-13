@@ -23,7 +23,16 @@ const ROUTES = {
 
 //__ASSET_IMPORTS__
 
-const APK_URL = "https://raw.githubusercontent.com/nrupala/usemykey-site/main/downloads/MyKey.apk";
+// Download files live in the repo's downloads/ folder and are served
+// from its raw URLs (the Worker itself only carries the small pages).
+const RAW_DOWNLOADS = "https://raw.githubusercontent.com/nrupala/usemykey-site/main/downloads/";
+const DOWNLOAD_FILES = {
+  "/download/MyKey.apk": "MyKey.apk",
+  "/download/MyKey-2.2.0-windows-x86_64.exe": "MyKey-2.2.0-windows-x86_64.exe",
+  "/download/mykey-cli-2.2.0-windows-x86_64.exe": "mykey-cli-2.2.0-windows-x86_64.exe",
+  "/download/MyKey-2.2.0-linux-x86_64.tar.gz": "MyKey-2.2.0-linux-x86_64.tar.gz",
+  "/download/MyKey-2.2.0-SHA256SUMS.txt": "MyKey-2.2.0-SHA256SUMS.txt"
+};
 
 export default {
   async fetch(request) {
@@ -34,8 +43,9 @@ export default {
     let path = url.pathname;
     if (path.length > 1 && path.endsWith("/")) path = path.slice(0, -1);
 
-    if (path === "/download/MyKey.apk") {
-      return Response.redirect(APK_URL, 302);
+    const downloadFile = DOWNLOAD_FILES[path];
+    if (downloadFile) {
+      return Response.redirect(RAW_DOWNLOADS + downloadFile, 302);
     }
     if (path.endsWith(".html")) {
       const clean = path.slice(0, -5) === "/index" ? "/" : path.slice(0, -5);

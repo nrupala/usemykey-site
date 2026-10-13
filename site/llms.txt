@@ -8,6 +8,10 @@
 - Licence delivery: a signed licence key is emailed after purchase and pasted into the app once. It is stored inside the encrypted vault and works offline; there is no activation server.
 - Licence recovery: the owner emails info@aimlds.org with the purchase email, payment date, and date of birth; on a match the key is re-sent to the email on file only.
 - Security model: AES-256-GCM encryption, Argon2id key derivation, per-entry keys, BIP-39 recovery words. Backup packages need the recovery words plus a separate 8-word backup code outside the app. Sign-in codes (TOTP) are stored in the vault and are never exposed to agent keys.
+- Passkeys: MyKey stores WebAuthn passkeys in the vault and acts as an authenticator on Android (attestation "none", stated honestly). Passkey private keys are never given to agent keys.
+- Browser extension: for Chromium browsers and Firefox; fills logins from the desktop vault over a paired, encrypted channel on the same machine. The extension holds no copy of the vault and makes zero network requests. Store listings are pending; the install package is on the project page (https://github.com/nrupala/mykey-mobile/tree/main/extension).
+- Android autofill: MyKey fills usernames and passwords into other apps and browsers, only after the user unlocks and taps the entry.
+- Desktop downloads: ready-made builds for Windows (app + command-line tool) and Linux (bundle) at https://usemykey.com/download, version 2.2.0, with published SHA-256 checksums. The builds are unsigned (no code-signing certificate yet); the release notes say so in plain words. macOS has no prebuilt download yet.
 - Agent access (desktop): a human can issue a separate, scoped, revocable agent key; every use is written to a tamper-evident log.
 - Privacy: the app collects nothing and makes no network calls. Sync uses the user's own cloud folder and carries only the encrypted vault.
 - Support: info@aimlds.org
@@ -15,7 +19,7 @@
 ## Pages
 
 - [Home](https://usemykey.com/): what MyKey is, how it works, pricing summary.
-- [Download](https://usemykey.com/download): Android APK (direct download), desktop app via GitHub, installable web app instructions.
+- [Download](https://usemykey.com/download): Android APK (direct download), desktop downloads for Windows and Linux, browser extension via the project page, installable web app instructions.
 - [Buy a licence](https://usemykey.com/buy): free vs licensed, how the licence key works, patron tip.
 - [Recover my licence](https://usemykey.com/recover): the licence recovery steps.
 - [Support & FAQ](https://usemykey.com/support): how MyKey works and common questions (mirrors the in-app help).

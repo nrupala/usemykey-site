@@ -1,0 +1,3 @@
+3ec743eef10f191acc48a8b0168f97c95ad611c6ad109e9e9930c624c7ca3a9a  MyKey-2.2.0-windows-x86_64.exe
+2405f6a59bc0fbeae8b151214e68bc1c704e549a407f40ffd9f279cc0215f65f  mykey-cli-2.2.0-windows-x86_64.exe
+b041d78553735ec0f3a71e93fe50c50da76f1c55a1d2a4afbc3e8c8a22992747  MyKey-2.2.0-linux-x86_64.tar.gz

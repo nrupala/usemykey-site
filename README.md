@@ -16,6 +16,7 @@ The public website for **MyKey**, the offline-first password vault sold by
 | `worker.js` | The Cloudflare Worker that serves the site (routing, headers, the APK download redirect). |
 | `tools/build_deploy.py` | Build + deploy + verify tooling (see below). |
 | `downloads/MyKey.apk` | The current Android build served from the Download page via `/download/MyKey.apk` (the Worker redirects to this file's raw URL). Refreshed from the mykey-mobile release artifact; the version and SHA-256 shown on the Download page must match this file. |
+| `downloads/MyKey-2.2.0-*.exe`, `downloads/MyKey-2.2.0-linux-x86_64.tar.gz`, `downloads/MyKey-2.2.0-SHA256SUMS.txt` | The desktop builds (Windows app + CLI, Linux bundle) and their checksums, served from the Download page by the same Worker-redirect pattern. Built from nrupala/mykey v2.2.0; unsigned — the Download page says so. Keep the versions and sizes on the page in step with these files. |
 | `dist/` | Generated worker bundle (git-ignored; rebuilt on every deploy). |
 
 ## Pages

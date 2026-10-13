@@ -124,8 +124,8 @@ def deploy():
 
 def verify():
     checks = {
-        "https://usemykey.com/": ["Your passwords. Your device. Your key.", "2351485 ALBERTA INC.", "101EEK"],
-        "https://usemykey.com/download": ["Download the Android app (APK)", "d9f4750c"],
+        "https://usemykey.com/": ["Your passwords. Your device. Your key.", "2351485 ALBERTA INC.", "101EEK", "Passkeys, kept in your vault", "Fill logins in your browser"],
+        "https://usemykey.com/download": ["Download the Android app (APK)", "5459c299", "MyKey-2.2.0-windows-x86_64.exe", "Browser extension"],
         "https://usemykey.com/buy": ["Checkout opens at launch", "Free vs licensed"],
         "https://usemykey.com/recover": ["Recover my licence", "date of birth"],
         "https://usemykey.com/support": ["I forgot my master password"],

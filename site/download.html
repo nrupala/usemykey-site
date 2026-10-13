@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Download MyKey — Android and desktop</title>
-<meta name="description" content="Download MyKey free: Android app (direct APK), desktop app, and the web app you can install from your browser. Same vault everywhere.">
+<meta name="description" content="Download MyKey free: Android app (direct APK), desktop downloads for Windows and Linux, a browser extension, and the web app you can install from your browser. Same vault everywhere.">
 <link rel="canonical" href="https://usemykey.com/download">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="MyKey">
@@ -32,9 +32,9 @@
 
 <h2>Android</h2>
 <div class="card">
-  <p>The full app: fingerprint unlock, sign-in codes, change reminders, skins, and backups.</p>
+  <p>The full app: fingerprint unlock, passkeys, autofill in other apps and browsers, sign-in codes, change reminders, skins, and two-key backups.</p>
   <p><a class="btn" href="/download/MyKey.apk">Download the Android app (APK)</a></p>
-  <p class="small muted">Version 1.2.0 · 7.3 MB · SHA-256 <code>d9f4750c149680e774bd13b4ffd255bfd0b4771d000765cb08523d5ac921f968</code></p>
+  <p class="small muted">Version 1.3.0 · 7.6 MB · SHA-256 <code>5459c29921417bbff601df7eab21c6b6f661f1f4404b03c539c89625871dc6e5</code></p>
   <p class="small">Open the file on your phone and allow the install when Android asks. This is a direct download from us; a Google Play listing is in preparation. The app asks for no internet permission and works fully offline.</p>
 </div>
 
@@ -47,9 +47,22 @@
 
 <h2>Desktop (Windows, macOS, Linux)</h2>
 <div class="card">
-  <p>The desktop app adds the command line, agent keys for programs you trust, and folder sync through your own cloud.</p>
-  <p><a class="btn secondary" href="https://github.com/nrupala/mykey">Get the desktop app on GitHub</a></p>
-  <p class="small muted">Today the desktop app runs from its source on GitHub (Python). A one-click installer is in preparation and will be linked here when it ships.</p>
+  <p>The desktop app adds the command line, agent keys for programs you trust, your passkeys on file, and folder sync through your own cloud. Version 2.2.0:</p>
+  <p>
+    <a class="btn" href="/download/MyKey-2.2.0-windows-x86_64.exe">Windows app (17.1 MB)</a><br>
+    <a class="btn secondary" href="/download/mykey-cli-2.2.0-windows-x86_64.exe">Windows command-line tool (14.0 MB)</a><br>
+    <a class="btn secondary" href="/download/MyKey-2.2.0-linux-x86_64.tar.gz">Linux bundle — app + command line (30.6 MB)</a>
+  </p>
+  <p class="small"><a href="/download/MyKey-2.2.0-SHA256SUMS.txt">SHA-256 checksums</a> for all three files, if you want to check your download arrived intact. On Linux, make the programs executable after unpacking (<code>chmod +x MyKey mykey-cli</code>).</p>
+  <p class="small muted">These builds are not code-signed yet, so your system will warn you — that is expected for now. On Windows, SmartScreen says “Windows protected your PC”: choose <em>More info</em>, then <em>Run anyway</em>.</p>
+  <p class="small muted">macOS: there is no ready-made Mac download yet. The build script in the project makes a MyKey app when it runs on a Mac; a signed Mac download comes once a signing certificate exists. Source and project page: <a href="https://github.com/nrupala/mykey">github.com/nrupala/mykey</a>.</p>
+</div>
+
+<h2>Browser extension</h2>
+<div class="card">
+  <p>Fill logins in Chrome, Edge, Brave and other Chromium browsers, and in Firefox — straight from your desktop vault. The extension holds no copy of your vault: it talks to the desktop app on your own computer over a private channel you approve, and it makes no internet requests.</p>
+  <p><a class="btn secondary" href="https://github.com/nrupala/mykey-mobile/tree/main/extension">Get the extension (project page)</a></p>
+  <p class="small muted">Store listings are on the way. Today the install is a ready-made package from the project page, with plain step-by-step instructions. You need the desktop app above, and there is a one-time pairing you approve on the desktop — that approval is what proves the browser is yours.</p>
 </div>
 
 <h2>Moving from another password app?</h2>
