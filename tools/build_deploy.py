@@ -98,7 +98,7 @@ def deploy():
     parts.append((None, "metadata", "application/json", json.dumps(metadata).encode()))
     for fname in sorted(os.listdir(DIST)):
         with open(os.path.join(DIST, fname), "rb") as fh:
-            parts.append((fname, fname, "application/javascript", fh.read()))
+            parts.append((fname, fname, "application/javascript+module", fh.read()))
     body = b""
     for filename, name, ctype, data in parts:
         body += f"--{boundary}\r\n".encode()
