@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-14 — APK refresh: Help visible on the locked screen
+
+- Android APK refreshed (SHA-256 470c13fe…). The client fix moves
+  the "Help and questions" button on the locked screen to directly
+  under the unlock controls, before the secondary actions — on a
+  phone it previously fell below the fold.
+
 ## 2026-10-13 — All feature waves merged; downloads completed
 
 - Home now describes what shipped with the feature waves: passkeys,
