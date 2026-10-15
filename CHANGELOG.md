@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-14 — The vault's home (Android) + APK refresh
+
+- Android APK refreshed to client 1.4.0 (SHA-256 13ec2578…): the
+  vault can now live outside the app. Give it a home folder once
+  and MyKey keeps the encrypted vault file there, updated on every
+  save — uninstalling the app no longer takes your vault with it,
+  and a reinstall finds the vault in its folder. Signed with the
+  same permanent MyKey release key as the previous build, so this
+  update installs in place.
+
 ## 2026-10-14 — Permanently signed Android build + APK refresh
 
 - Android APK refreshed (SHA-256 a7bd97f8…): the app is now built

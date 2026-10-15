@@ -26,9 +26,9 @@ window.MYKEY_CONFIG = {
     }
   },
   apk: {
-    version: "1.3.0",
-    sizeBytes: 6120175,
-    sha256: "a7bd97f808666b3a6beef9b91dfc3c51b094f31f36d4cee7e7724331304ffb70",
+    version: "1.4.0",
+    sizeBytes: 6128415,
+    sha256: "13ec25788fa02aa57b059f992b0414c32a0bdeb95d81e8d569c6d2496aa22e55",
     file: "MyKey.apk"
   }
 };
