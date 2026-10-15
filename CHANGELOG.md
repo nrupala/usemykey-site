@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-14 — New logo + APK refresh
+
+- Favicon is now the product mark: the refined-key logo (two-tone
+  gold key, double-ring bow, deep navy #111D54), replacing the
+  green/white placeholder.
+- Android APK refreshed (SHA-256 63f64709…): the same client with
+  the new logo in every launcher icon (adaptive + legacy mipmaps).
+
 ## 2026-10-14 — APK refresh: Help visible on the locked screen
 
 - Android APK refreshed (SHA-256 470c13fe…). The client fix moves
