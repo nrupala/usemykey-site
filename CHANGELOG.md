@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-14 — Permanently signed Android build + APK refresh
+
+- Android APK refreshed (SHA-256 a7bd97f8…): the app is now built
+  as a release build and signed with the permanent MyKey release
+  key, so updates install in place from this build onward. Earlier
+  test builds were debug-signed with throwaway keys and could not
+  be updated over — the download page now says so plainly, with
+  the export-first step for anyone coming from a test build.
+
 ## 2026-10-14 — New logo + APK refresh
 
 - Favicon is now the product mark: the refined-key logo (two-tone
