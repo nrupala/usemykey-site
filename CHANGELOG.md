@@ -17,6 +17,12 @@
   licence key under the licence authority and emails it to the
   buyer; refunds mark the licence revoked in the registry. The
   licence authority's private key is never in this Worker.
+- Zone note: a Cloudflare configuration rule (http_config_settings,
+  2026-10-19) turns the Browser Integrity Check off for the
+  /stripe/webhook path only — it is a machine-to-machine endpoint
+  and Cloudflare's UA filter 403s non-browser fingerprints
+  (observed: python-urllib, error 1010) before the request reaches
+  the Worker. Stripe's HMAC signature remains the only gate.
 - Buy page: post-payment thank-you notes (`?checkout=success`,
   `?tip=thanks`), the no-JavaScript fallback card replaces the
   "checkout opens at launch" card, and the payments line now
