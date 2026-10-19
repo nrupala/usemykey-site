@@ -94,7 +94,23 @@ def deploy():
     build()
     boundary = "----mk" + uuid.uuid4().hex
     parts = []
-    metadata = {"main_module": "index.js", "compatibility_date": "2025-01-01", "bindings": []}
+    # The Stripe webhook handler needs the MYKEY_ORDERS KV binding.
+    # Its namespace id is passed via the MYKEY_ORDERS_KV_ID env var
+    # (an identifier, not a secret). The webhook's Stripe signing
+    # secrets (STRIPE_WEBHOOK_SECRET / STRIPE_WEBHOOK_SECRET_TEST)
+    # are Worker secrets set out of band via the secrets API —
+    # script uploads do not carry them and must never contain them.
+    bindings = []
+    kv_id = os.environ.get("MYKEY_ORDERS_KV_ID")
+    if kv_id:
+        bindings.append({"type": "kv_namespace", "name": "MYKEY_ORDERS",
+                         "namespace_id": kv_id})
+    else:
+        print("WARNING: MYKEY_ORDERS_KV_ID not set — deploying WITHOUT "
+              "the orders binding; /stripe/webhook will answer 500 "
+              "until the binding exists")
+    metadata = {"main_module": "index.js", "compatibility_date": "2025-01-01",
+                "bindings": bindings}
     parts.append((None, "metadata", "application/json", json.dumps(metadata).encode()))
     for fname in sorted(os.listdir(DIST)):
         with open(os.path.join(DIST, fname), "rb") as fh:
@@ -125,8 +141,9 @@ def deploy():
 def verify():
     checks = {
         "https://usemykey.com/": ["Your passwords. Your device. Your key.", "2351485 ALBERTA INC.", "101EEK", "Passkeys, kept in your vault", "Fill logins in your browser"],
-        "https://usemykey.com/download": ["Download the Android app (APK)", "a7bd97f8", "MyKey-2.2.0-windows-x86_64.exe", "Browser extension"],
-        "https://usemykey.com/buy": ["Checkout opens at launch", "Free vs licensed"],
+        "https://usemykey.com/download": ["Download the Android app (APK)", "13ec2578", "MyKey-2.2.0-windows-x86_64.exe", "Browser extension"],
+        "https://usemykey.com/buy": ["Free vs licensed", "US$49 suggested (pay what you want, US$29+)", "processed by Stripe"],
+        "https://usemykey.com/config.js": ["checkoutLive: true", "buy.stripe.com/3cIfZh1m2bEI3mD32C9Zm06", "price_1USH6BEAiA4GKFhA9scCt7HO"],
         "https://usemykey.com/recover": ["Recover my licence", "date of birth"],
         "https://usemykey.com/support": ["I forgot my master password"],
         "https://usemykey.com/privacy": ["We collect nothing"],

@@ -1,28 +1,43 @@
 /* MyKey site configuration — the ONE place checkout state lives.
  *
- * checkoutLive is false: there is no live Paddle account for
- * 2351485 ALBERTA INC. yet (the seller verification step is the
- * owner's). The Buy page therefore shows "checkout opens at launch"
- * and never presents the sandbox checkout as a real purchase.
+ * checkoutLive is TRUE: payments run on the company's one Stripe
+ * account (2351485 ALBERTA INC., public name AIMLDS) — payments
+ * were consolidated on Stripe on 2026-10-14 and Paddle is closed.
+ * The Buy page links out to Stripe-hosted Payment Link pages;
+ * this site never sees or stores card details.
  *
- * To open checkout at launch:
- *   1. Complete Paddle live seller verification for the Inc.
- *   2. Create the live products/prices + a live client token.
- *   3. Set environment to "production", fill in the live token and
- *      price IDs below, and set checkoutLive to true.
- * The sandbox values below are real Paddle Sandbox objects, created
- * 2026-10-13, so the full checkout can be exercised in test mode.
+ * How a licence reaches the buyer: after payment, Stripe calls
+ * this site's webhook (POST /stripe/webhook on the Worker). The
+ * Worker verifies Stripe's signature and records the order; an
+ * issuer step under the company's licence authority then mints
+ * the buyer's MKLIC1 licence key and emails it to the address
+ * used at checkout. The patron tip prices are plain
+ * subscriptions — they unlock nothing.
+ *
+ * Prices: the licence is pay-what-you-want — the suggested price
+ * is a customer-set amount (preset US$49, minimum US$29, maximum
+ * US$999); the floor price is a fixed US$29. Both mint the same
+ * licence.
  */
 window.MYKEY_CONFIG = {
-  checkoutLive: false,
-  paddle: {
-    environment: "sandbox",
-    clientToken: "test_ecb0286d3fbd0d3c67d4e48c8f2",
+  checkoutLive: true,
+  stripe: {
+    account: "acct_1UQdZREAiA4GKFhA",
+    products: {
+      licence: "prod_VTDWA8emf39Stw",
+      tip: "prod_VTDWn8YgvaizwU"
+    },
     prices: {
-      licenceSuggested: "pri_01m4v87pjaxkatmemrgzc8swvm",
-      licenceFloor: "pri_01m4v87rhp7jsbqpc3exd58vcm",
-      tip5: "pri_01m4v87t8aanw1msw48y6vqccp",
-      tip3: "pri_01m4v87w2px09jp2gj5m65jcxa"
+      licenceSuggested: "price_1USH6BEAiA4GKFhA9scCt7HO",
+      licenceFloor: "price_1USH5NEAiA4GKFhAltrszAVT",
+      tip5: "price_1USH5OEAiA4GKFhAQ6LQbXau",
+      tip3: "price_1USH5QEAiA4GKFhAZXKJlTAh"
+    },
+    links: {
+      licenceSuggested: "https://buy.stripe.com/3cIfZh1m2bEI3mD32C9Zm06",
+      licenceFloor: "https://buy.stripe.com/dRm7sL7KqbEIe1heLk9Zm07",
+      tip5: "https://buy.stripe.com/8x28wPd4KgZ2e1hfPo9Zm08",
+      tip3: "https://buy.stripe.com/cNi5kDd4K6ko8GX1Yy9Zm09"
     }
   },
   apk: {
