@@ -40,7 +40,8 @@ const DOWNLOAD_FILES = {
 // (live events against STRIPE_WEBHOOK_SECRET, test events
 // against STRIPE_WEBHOOK_SECRET_TEST — both are Worker secrets,
 // set out of band, never in this repo), then records paid
-// licence orders and refunds in the MYKEY_ORDERS KV namespace.
+// licence orders, refunds and disputes in the MYKEY_ORDERS KV
+// namespace.
 //
 // A separate issuer step (tools/stripe_issuer.py in the MyKey
 // desktop repo) reads the orders, cross-checks live orders
@@ -49,6 +50,21 @@ const DOWNLOAD_FILES = {
 // its custody home and is never present in this Worker — and
 // emails the buyer their key. Refunds are recorded the same way
 // and the issuer marks the licence revoked in the registry.
+//
+// Idempotency (release-gate F-MK-1): Stripe delivery is
+// at-least-once, so the recorder is write-once — an order key
+// that already exists, in ANY state, is never overwritten by a
+// re-delivery, so an issued order can never regress to
+// awaiting_issue and be minted twice. The issuer dedupes by
+// checkout session id as the second half of the same guard.
+//
+// Money-out scoping (release-gate F-MK-2): refund and dispute
+// events carry a payment_intent but no checkout session id.
+// They are recorded only when that payment_intent resolves to
+// a recorded MyKey order (via the pi: index written with each
+// order, or a scan of recorded orders). Charges belonging to
+// other product lines on the shared Stripe account resolve to
+// nothing and are ignored — they write no MyKey records.
 
 const WEBHOOK_TOLERANCE_SECS = 300;
 
@@ -86,6 +102,39 @@ async function verifyStripeSignature(body, header, secret) {
   return signatures.some((s) => timingSafeEqual(s, expected));
 }
 
+async function getJson(env, key) {
+  const raw = await env.MYKEY_ORDERS.get(key);
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+// Resolve a charge's payment_intent back to the checkout
+// session whose recorded order carried it: the pi: index
+// written when the order was recorded, else a scan of the
+// recorded orders (which also backfills the index for orders
+// recorded before the index existed). Returns null when the
+// charge is not one of MyKey's.
+async function sessionForPaymentIntent(env, paymentIntent) {
+  if (!paymentIntent) return null;
+  const indexed = await env.MYKEY_ORDERS.get("pi:" + paymentIntent);
+  if (indexed) return indexed;
+  const list = await env.MYKEY_ORDERS.list({ prefix: "order:" });
+  for (const k of list.keys) {
+    const order = await getJson(env, k.name);
+    if (order && order.payment_intent === paymentIntent
+        && order.session_id) {
+      await env.MYKEY_ORDERS.put("pi:" + paymentIntent,
+        order.session_id);
+      return order.session_id;
+    }
+  }
+  return null;
+}
+
 async function handleStripeWebhook(request, env) {
   if (!env.MYKEY_ORDERS) {
     return new Response("orders store not configured", { status: 500 });
@@ -114,38 +163,90 @@ async function handleStripeWebhook(request, env) {
     const s = event.data.object || {};
     const meta = s.metadata || {};
     if (meta.product_line === "mykey" && s.id) {
-      const order = {
-        kind: meta.kind || "unknown",
-        tier: meta.tier || "",
-        session_id: s.id,
-        payment_intent: s.payment_intent || null,
-        subscription: s.subscription || null,
-        email: (s.customer_details && s.customer_details.email)
-          || s.customer_email || null,
-        amount_total: s.amount_total,
-        currency: s.currency,
-        payment_status: s.payment_status || null,
-        livemode,
-        received_at: new Date().toISOString(),
-        status: "awaiting_issue"
-      };
-      await env.MYKEY_ORDERS.put(
-        "order:" + s.id, JSON.stringify(order));
+      const key = "order:" + s.id;
+      // Write-once (F-MK-1): a verified re-delivery of this
+      // event must never regress an order the issuer has
+      // already acted on. Any existing state wins; the
+      // re-delivery is acknowledged and changes nothing.
+      const existing = await env.MYKEY_ORDERS.get(key);
+      if (!existing) {
+        const order = {
+          kind: meta.kind || "unknown",
+          tier: meta.tier || "",
+          session_id: s.id,
+          payment_intent: s.payment_intent || null,
+          subscription: s.subscription || null,
+          email: (s.customer_details && s.customer_details.email)
+            || s.customer_email || null,
+          amount_total: s.amount_total,
+          currency: s.currency,
+          payment_status: s.payment_status || null,
+          livemode,
+          received_at: new Date().toISOString(),
+          status: "awaiting_issue"
+        };
+        await env.MYKEY_ORDERS.put(key, JSON.stringify(order));
+        if (s.payment_intent) {
+          await env.MYKEY_ORDERS.put(
+            "pi:" + s.payment_intent, s.id);
+        }
+      }
     }
   } else if (event.type === "charge.refunded") {
     const c = event.data.object || {};
     if (c.id) {
-      const rec = {
-        charge_id: c.id,
-        payment_intent: c.payment_intent || null,
-        amount_refunded: c.amount_refunded,
-        currency: c.currency,
-        livemode,
-        received_at: new Date().toISOString(),
-        status: "awaiting_revoke"
-      };
-      await env.MYKEY_ORDERS.put(
-        "revoke:" + (c.payment_intent || c.id), JSON.stringify(rec));
+      // Scoped to MyKey (F-MK-2): record only when the charge
+      // resolves to a recorded MyKey order. Other product
+      // lines' refunds write nothing here.
+      const sessionId = await sessionForPaymentIntent(
+        env, c.payment_intent || null);
+      if (sessionId) {
+        const rec = {
+          charge_id: c.id,
+          payment_intent: c.payment_intent || null,
+          session_id: sessionId,
+          amount_refunded: c.amount_refunded,
+          currency: c.currency,
+          livemode,
+          received_at: new Date().toISOString(),
+          status: "awaiting_revoke"
+        };
+        await env.MYKEY_ORDERS.put(
+          "revoke:" + (c.payment_intent || c.id),
+          JSON.stringify(rec));
+      }
+    }
+  } else if (event.type === "charge.dispute.created"
+      || event.type === "charge.dispute.closed") {
+    const d = event.data.object || {};
+    if (d.id) {
+      // Scoped to MyKey (F-MK-2), same resolution as refunds.
+      // Created and closed are separate records so neither can
+      // overwrite an unprocessed other; the issuer applies
+      // them to the licence in the registry (flag on created;
+      // revoke on closed-lost, clear on closed-won).
+      const sessionId = await sessionForPaymentIntent(
+        env, d.payment_intent || null);
+      if (sessionId) {
+        const which = event.type === "charge.dispute.created"
+          ? "created" : "closed";
+        const rec = {
+          dispute_id: d.id,
+          charge_id: d.charge || null,
+          payment_intent: d.payment_intent || null,
+          session_id: sessionId,
+          event: which,
+          dispute_status: d.status || null,
+          reason: d.reason || null,
+          amount: d.amount,
+          currency: d.currency,
+          livemode,
+          received_at: new Date().toISOString(),
+          status: "awaiting_issuer"
+        };
+        await env.MYKEY_ORDERS.put(
+          "dispute:" + d.id + ":" + which, JSON.stringify(rec));
+      }
     }
   }
   return new Response(JSON.stringify({ received: true }), {
