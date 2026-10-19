@@ -1,5 +1,25 @@
 # Changelog
 
+## 2026-10-19 — Webhook idempotency + dispute recording (gate F-MK-1/F-MK-2)
+
+- F-MK-1 (idempotency): the order recorder is now write-once.
+  Stripe delivery is at-least-once; a verified re-delivery of
+  `checkout.session.completed` no longer overwrites an existing
+  order in any state, so an issued order can never regress to
+  `awaiting_issue` and be minted a second time. Each recorded
+  order also writes a `pi:<payment_intent>` → session index.
+  The matching issuer half (session dedupe) ships in the
+  desktop repo's `tools/stripe_issuer.py`.
+- F-MK-2 (money-out coverage): `charge.dispute.created` and
+  `charge.dispute.closed` are now recorded (as separate
+  `dispute:` records) and applied by the issuer — a dispute
+  flags the licence in the registry, a lost dispute revokes it
+  as a chargeback, a won dispute clears the flag. Refund and
+  dispute events are scoped to MyKey: they are recorded only
+  when the charge's payment_intent resolves to a recorded
+  MyKey order; other product lines' charges on the shared
+  Stripe account write nothing here.
+
 ## 2026-10-19 — Checkout is live on Stripe
 
 - Checkout opened: `checkoutLive: true` in `site/config.js`. The
