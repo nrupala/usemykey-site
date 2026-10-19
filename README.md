@@ -60,6 +60,11 @@ sees or stores card details.
    emails the key to the buyer from info@aimlds.org. Refunds mark
    the licence revoked in the registry.
 
+Edge note: a Cloudflare configuration rule turns the Browser
+Integrity Check off for `/stripe/webhook` only — the zone's UA
+filter otherwise 403s machine callers before they reach the
+Worker, and Stripe's signature is the endpoint's real gate.
+
 Deploy note: `tools/build_deploy.py deploy` attaches the
 `MYKEY_ORDERS` KV binding when the `MYKEY_ORDERS_KV_ID` env var is
 set. Worker secrets are NOT part of the script upload — set or
