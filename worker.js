@@ -34,14 +34,140 @@ const DOWNLOAD_FILES = {
   "/download/MyKey-2.2.0-SHA256SUMS.txt": "MyKey-2.2.0-SHA256SUMS.txt"
 };
 
-export default {
-  async fetch(request) {
-    if (request.method !== "GET" && request.method !== "HEAD") {
-      return new Response("Method not allowed", { status: 405 });
+// --- Stripe webhook (POST /stripe/webhook) ----------------------
+// Stripe signs every event it sends. This handler verifies the
+// signature against the endpoint secret for the event's mode
+// (live events against STRIPE_WEBHOOK_SECRET, test events
+// against STRIPE_WEBHOOK_SECRET_TEST — both are Worker secrets,
+// set out of band, never in this repo), then records paid
+// licence orders and refunds in the MYKEY_ORDERS KV namespace.
+//
+// A separate issuer step (tools/stripe_issuer.py in the MyKey
+// desktop repo) reads the orders, cross-checks live orders
+// against Stripe's API, mints the buyer's licence under the
+// company's licence authority — whose private key never leaves
+// its custody home and is never present in this Worker — and
+// emails the buyer their key. Refunds are recorded the same way
+// and the issuer marks the licence revoked in the registry.
+
+const WEBHOOK_TOLERANCE_SECS = 300;
+
+async function hmacSha256Hex(secret, message) {
+  const enc = new TextEncoder();
+  const key = await crypto.subtle.importKey(
+    "raw", enc.encode(secret),
+    { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+  const sig = await crypto.subtle.sign("HMAC", key, enc.encode(message));
+  return [...new Uint8Array(sig)]
+    .map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+function timingSafeEqual(a, b) {
+  if (a.length !== b.length) return false;
+  let diff = 0;
+  for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  return diff === 0;
+}
+
+async function verifyStripeSignature(body, header, secret) {
+  if (!header) return false;
+  let timestamp = null;
+  const signatures = [];
+  for (const part of header.split(",")) {
+    const [k, v] = part.split("=", 2);
+    if (k === "t") timestamp = v;
+    if (k === "v1") signatures.push(v);
+  }
+  if (!timestamp || signatures.length === 0) return false;
+  const ts = parseInt(timestamp, 10);
+  if (!Number.isFinite(ts)) return false;
+  if (Math.abs(Date.now() / 1000 - ts) > WEBHOOK_TOLERANCE_SECS) return false;
+  const expected = await hmacSha256Hex(secret, `${timestamp}.${body}`);
+  return signatures.some((s) => timingSafeEqual(s, expected));
+}
+
+async function handleStripeWebhook(request, env) {
+  if (!env.MYKEY_ORDERS) {
+    return new Response("orders store not configured", { status: 500 });
+  }
+  const body = await request.text();
+  let event;
+  try {
+    event = JSON.parse(body);
+  } catch {
+    return new Response("invalid payload", { status: 400 });
+  }
+  const secret = event && event.livemode === false
+    ? env.STRIPE_WEBHOOK_SECRET_TEST
+    : env.STRIPE_WEBHOOK_SECRET;
+  if (!secret) {
+    return new Response("webhook not configured", { status: 500 });
+  }
+  const ok = await verifyStripeSignature(
+    body, request.headers.get("stripe-signature") || "", secret);
+  if (!ok) {
+    return new Response("invalid signature", { status: 400 });
+  }
+
+  const livemode = event.livemode !== false;
+  if (event.type === "checkout.session.completed") {
+    const s = event.data.object || {};
+    const meta = s.metadata || {};
+    if (meta.product_line === "mykey" && s.id) {
+      const order = {
+        kind: meta.kind || "unknown",
+        tier: meta.tier || "",
+        session_id: s.id,
+        payment_intent: s.payment_intent || null,
+        subscription: s.subscription || null,
+        email: (s.customer_details && s.customer_details.email)
+          || s.customer_email || null,
+        amount_total: s.amount_total,
+        currency: s.currency,
+        payment_status: s.payment_status || null,
+        livemode,
+        received_at: new Date().toISOString(),
+        status: "awaiting_issue"
+      };
+      await env.MYKEY_ORDERS.put(
+        "order:" + s.id, JSON.stringify(order));
     }
+  } else if (event.type === "charge.refunded") {
+    const c = event.data.object || {};
+    if (c.id) {
+      const rec = {
+        charge_id: c.id,
+        payment_intent: c.payment_intent || null,
+        amount_refunded: c.amount_refunded,
+        currency: c.currency,
+        livemode,
+        received_at: new Date().toISOString(),
+        status: "awaiting_revoke"
+      };
+      await env.MYKEY_ORDERS.put(
+        "revoke:" + (c.payment_intent || c.id), JSON.stringify(rec));
+    }
+  }
+  return new Response(JSON.stringify({ received: true }), {
+    status: 200, headers: { "Content-Type": "application/json" }
+  });
+}
+
+export default {
+  async fetch(request, env) {
     const url = new URL(request.url);
     let path = url.pathname;
     if (path.length > 1 && path.endsWith("/")) path = path.slice(0, -1);
+
+    if (path === "/stripe/webhook") {
+      if (request.method !== "POST") {
+        return new Response("Method not allowed", { status: 405 });
+      }
+      return handleStripeWebhook(request, env);
+    }
+    if (request.method !== "GET" && request.method !== "HEAD") {
+      return new Response("Method not allowed", { status: 405 });
+    }
 
     const downloadFile = DOWNLOAD_FILES[path];
     if (downloadFile) {

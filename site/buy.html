@@ -51,17 +51,17 @@
 <p>If MyKey earns its keep and you want to support its development, there is an optional tip of US$5 a month (or US$3). It unlocks nothing and changes nothing in the app. It is simply a thank-you, and we are grateful for it.</p>
 
 <div class="card" id="checkout-off">
-  <h3>Checkout opens at launch</h3>
-  <p>Online checkout is being switched on as the public launch completes. Until then, the apps are free to download and use — up to 50 passwords, with every safety feature — and nothing about your vault changes when checkout opens.</p>
-  <p>Questions about a licence in the meantime: <a href="mailto:info@aimlds.org">info@aimlds.org</a>.</p>
+  <h3>Checkout needs JavaScript</h3>
+  <p>The buy buttons on this page need JavaScript to reach the secure Stripe checkout. If they do not appear, email <a href="mailto:info@aimlds.org">info@aimlds.org</a> and we will send you a payment link directly.</p>
+  <p>The apps are free to download and use either way — up to 50 passwords, with every safety feature.</p>
 </div>
 
 <div id="checkout-on" style="display:none">
   <div class="card">
     <h3>Buy your licence</h3>
-    <p><button class="btn" id="buy-licence-suggested" type="button">Licence — US$49 (suggested)</button>
+    <p><button class="btn" id="buy-licence-suggested" type="button">Licence — US$49 suggested (pay what you want, US$29+)</button>
     <button class="btn secondary" id="buy-licence-floor" type="button">Licence — US$29</button></p>
-    <p class="small muted">Pay more than US$49 if MyKey is worth more to you — adjust the amount in the checkout. Your licence key arrives by email.</p>
+    <p class="small muted">The US$49 button lets you set your own amount in the checkout — US$29 minimum, pay more if MyKey is worth more to you. Your licence key arrives by email at the address you use at checkout.</p>
   </div>
   <div class="card">
     <h3>Patron tip (optional, unlocks nothing)</h3>
@@ -70,7 +70,17 @@
   </div>
 </div>
 
-<p class="small muted">MyKey is sold by 2351485 ALBERTA INC., Calgary, Alberta, Canada. Payments are processed by Paddle, our merchant of record, when checkout is open; we never see or store your card details. See the <a href="/terms">Terms</a> — including the liability cap (the amount you paid) and Calgary, Alberta venue.</p>
+<div class="card" id="paid-note" style="display:none">
+  <h3>Payment received — thank you</h3>
+  <p>Your licence key is on its way to the email address you used at checkout. Paste it into MyKey once (Settings → Licence), on any device. If it has not arrived within the hour, check your spam folder, then write to <a href="mailto:info@aimlds.org">info@aimlds.org</a>.</p>
+</div>
+
+<div class="card" id="tip-note" style="display:none">
+  <h3>Thank you for the tip</h3>
+  <p>Your patron tip is set up. It unlocks nothing and changes nothing in the app — it simply helps MyKey keep going, and we are grateful.</p>
+</div>
+
+<p class="small muted">MyKey is sold by 2351485 ALBERTA INC., Calgary, Alberta, Canada. Payments are processed by Stripe; we never see or store your card details. See the <a href="/terms">Terms</a> — including the liability cap (the amount you paid) and Calgary, Alberta venue.</p>
 
 </div></main>
 <footer class="site"><div class="wrap">

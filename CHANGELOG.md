@@ -1,5 +1,31 @@
 # Changelog
 
+## 2026-10-19 — Checkout is live on Stripe
+
+- Checkout opened: `checkoutLive: true` in `site/config.js`. The
+  Buy page now links to live Stripe Payment Links on the company's
+  one Stripe account (AIMLDS): the licence as a pay-what-you-want
+  price (US$49 preset, US$29 minimum) plus a fixed US$29 price,
+  and the optional US$5 / US$3 monthly patron tips. Paddle is
+  retired as the presented checkout (payments were consolidated
+  on Stripe on 2026-10-14); the Paddle sandbox config is gone.
+- New Worker endpoint `POST /stripe/webhook`: verifies Stripe's
+  signature (live/test endpoint secrets held as Worker secrets,
+  never in this repo) and records licence orders and refunds in a
+  new `MYKEY_ORDERS` KV namespace. The issuer step lives in the
+  desktop repo (`tools/stripe_issuer.py`): it mints the buyer's
+  licence key under the licence authority and emails it to the
+  buyer; refunds mark the licence revoked in the registry. The
+  licence authority's private key is never in this Worker.
+- Buy page: post-payment thank-you notes (`?checkout=success`,
+  `?tip=thanks`), the no-JavaScript fallback card replaces the
+  "checkout opens at launch" card, and the payments line now
+  names Stripe.
+- `tools/build_deploy.py`: deploy attaches the `MYKEY_ORDERS` KV
+  binding (via `MYKEY_ORDERS_KV_ID`); verify markers updated for
+  the live Buy page and config, and the Download checksum marker
+  corrected to the current build (13ec2578…).
+
 ## 2026-10-14 — The vault's home (Android) + APK refresh
 
 - Android APK refreshed to client 1.4.0 (SHA-256 13ec2578…): the

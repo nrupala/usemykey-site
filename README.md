@@ -34,14 +34,37 @@ repo) — keep them in step.
 ## Checkout state
 
 Checkout is gated by ONE value: `checkoutLive` in `site/config.js`.
-It is **false**. There is no live Paddle account for the Inc. yet, so the
-Buy page honestly shows "Checkout opens at launch" and no purchase
-control is presented to the public. The config carries real Paddle
-**Sandbox** product/price IDs and a sandbox client token, so the full
-checkout can be exercised in test mode. To open checkout at launch:
-complete Paddle live seller verification, create the live prices and
-client token, set `environment` to `"production"` with the live values,
-and flip `checkoutLive` to `true`.
+It is **true** (since 2026-10-19). Payments run on the company's one
+Stripe account (2351485 ALBERTA INC., public name AIMLDS) — payments
+were consolidated on Stripe on 2026-10-14 and Paddle is closed. The
+Buy buttons link to Stripe-hosted Payment Link pages; the live
+product/price/link IDs live in `site/config.js`. This site never
+sees or stores card details.
+
+## Billing flow (webhook + issuer)
+
+1. A buyer pays on a Stripe Payment Link. Stripe redirects them
+   back to `/buy?checkout=success` (licence) or `/buy?tip=thanks`.
+2. Stripe calls `POST /stripe/webhook` on this Worker. The handler
+   verifies Stripe's signature (Worker secrets
+   `STRIPE_WEBHOOK_SECRET` for live events,
+   `STRIPE_WEBHOOK_SECRET_TEST` for test events — set out of band
+   via the Cloudflare secrets API, never in this repo) and records
+   the order, or the refund, in the `MYKEY_ORDERS` KV namespace.
+3. The issuer step — `tools/stripe_issuer.py` in the desktop repo
+   (nrupala/mykey) — polls the orders, cross-checks live orders
+   against Stripe's API, mints the buyer's MKLIC1 licence key
+   under the company's licence authority (the private key lives
+   only in its corporate custody home — never in this Worker, this
+   repo, or any log), records it in the licence registry, and
+   emails the key to the buyer from info@aimlds.org. Refunds mark
+   the licence revoked in the registry.
+
+Deploy note: `tools/build_deploy.py deploy` attaches the
+`MYKEY_ORDERS` KV binding when the `MYKEY_ORDERS_KV_ID` env var is
+set. Worker secrets are NOT part of the script upload — set or
+rotate them through the Cloudflare secrets API for the
+`usemykey-site` script.
 
 ## Build
 
