@@ -155,7 +155,14 @@ def verify():
     ok = True
     for url, markers in checks.items():
         try:
-            with urllib.request.urlopen(url, timeout=30) as resp:
+            # Cloudflare bot-filters the default urllib user agent
+            # (403 on every page) — send a browser UA so verify
+            # measures the pages, not the filter.
+            req = urllib.request.Request(
+                url, headers={"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) "
+                            "AppleWebKit/537.36 (KHTML, like Gecko) "
+                            "Chrome/126.0 Safari/537.36"})
+            with urllib.request.urlopen(req, timeout=30) as resp:
                 body = resp.read().decode("utf-8", "replace")
                 status = resp.status
         except Exception as e:  # noqa: BLE001
