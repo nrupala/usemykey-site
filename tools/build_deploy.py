@@ -43,6 +43,7 @@ ASSETS = {
     "support": "support.html",
     "privacy": "privacy.html",
     "terms": "terms.html",
+    "releases": "releases.html",
     "styles": "styles.css",
     "config": "config.js",
     "checkout": "checkout.js",
@@ -140,9 +141,10 @@ def deploy():
 
 def verify():
     checks = {
-        "https://usemykey.com/": ["Your passwords. Your device. Your key.", "2351485 ALBERTA INC.", "101EEK", "Passkeys, kept in your vault", "Fill logins in your browser"],
+        "https://usemykey.com/": ["Your passwords. Your device. Your key.", "2351485 ALBERTA INC.", "101EEK", "Passkeys, kept in your vault", "Fill logins in your browser", "Payments by Stripe"],
         "https://usemykey.com/download": ["Download the Android app (APK)", "13ec2578", "MyKey-2.2.0-windows-x86_64.exe", "Browser extension"],
-        "https://usemykey.com/buy": ["Free vs licensed", "US$49 suggested (pay what you want, US$29+)", "processed by Stripe"],
+        "https://usemykey.com/buy": ["Free vs licensed", "US$49 suggested (pay what you want, US$29+)", "processed by Stripe", "Buying, in plain terms"],
+        "https://usemykey.com/releases": ["Checkout opens", "Testing record", "282 passed, 1 skipped"],
         "https://usemykey.com/config.js": ["checkoutLive: true", "buy.stripe.com/3cIfZh1m2bEI3mD32C9Zm06", "price_1USH6BEAiA4GKFhA9scCt7HO"],
         "https://usemykey.com/recover": ["Recover my licence", "date of birth"],
         "https://usemykey.com/support": ["I forgot my master password"],

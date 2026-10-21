@@ -1,5 +1,31 @@
 # Changelog
 
+## 2026-10-21 — Transaction-page standard: seller strip, plain terms, release log
+
+- Every page now closes with the standard seller strip: "Sold by
+  2351485 ALBERTA INC. (AIMLDS) · Payments by Stripe · Pricing ·
+  Terms · Privacy · Releases · Contact" (each word after Stripe a
+  link), imported from the first shipped implementation of the
+  owner's transaction-page standard (LetsAskIt, PR #32) with only
+  the product variables changed.
+- Buy page: a "Buying, in plain terms" section in the standard's
+  shape — who you buy from (seller of record; Stripe hosts
+  checkout; the seller never sees the card), what you are buying
+  (the one-time licence, what it attaches to, no renewal; the tip
+  is the only subscription and unlocks nothing), refunds
+  (info@aimlds.org, case by case; the refunded/charged-back
+  licence-is-void wording kept verbatim, moved here from "How the
+  licence works"), and privacy + release-log links. Existing page
+  substance (free-vs-licensed table, how the licence works,
+  checkout cards, no-JavaScript fallback) is unchanged.
+- New /releases page: the public release log. Each entry lists
+  what changed AND its testing record, built from the repos'
+  changelogs and the release-gate packs (rows 7 and 22) — no
+  test count appears that is not on record in those sources.
+  This answers release-gate row 7 finding M3 (no public release
+  log). Worker change is one additive route; the webhook/order
+  logic and site/config.js are untouched.
+
 ## 2026-10-19 — Webhook idempotency + dispute recording (gate F-MK-1/F-MK-2)
 
 - F-MK-1 (idempotency): the order recorder is now write-once.

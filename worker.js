@@ -11,6 +11,7 @@ const ROUTES = {
   "/support": ["support", "text/html; charset=utf-8"],
   "/privacy": ["privacy", "text/html; charset=utf-8"],
   "/terms": ["terms", "text/html; charset=utf-8"],
+  "/releases": ["releases", "text/html; charset=utf-8"],
   "/styles.css": ["styles", "text/css; charset=utf-8"],
   "/config.js": ["config", "text/javascript; charset=utf-8"],
   "/checkout.js": ["checkout", "text/javascript; charset=utf-8"],
