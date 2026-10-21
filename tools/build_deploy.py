@@ -34,6 +34,40 @@ ACCOUNT = "2edd59d09fd816187b47afbb9ea43af1"
 ZONE = "451cba2d731b5dfa199fc7851ba4ebfc"
 SCRIPT = "usemykey-site"
 
+# SITE-INTEGRITY GUARD (added 2026-10-21): the deploy subcommand pushes
+# straight to Cloudflare, bypassing the signed wrapper, so it refuses to
+# run without an ACTIVE declaration for the usemykey-site scope, and
+# certifies the live artifact after a successful deploy. (build/verify do
+# not deploy and are not guarded.) Declare first:
+#   python3 ~/workspace/site-integrity/declare.py add usemykey-site --hours 2 --note "<what>"
+# After the deploy the script certifies via the signing service; then close:
+#   python3 ~/workspace/site-integrity/declare.py close usemykey-site
+import datetime as _si_dt, json as _si_json, subprocess as _si_sp, sys as _si_sys
+def _si_guard(_scopes):
+    try:
+        _decls = _si_json.load(open('/home/hatch/workspace/site-integrity/declarations.json'))
+    except Exception as _e:
+        print('GUARD: cannot read declarations.json:', _e); _si_sys.exit(1)
+    _now = _si_dt.datetime.now(_si_dt.timezone.utc)
+    def _ts(_s): return _si_dt.datetime.fromisoformat(_s.replace('Z', '+00:00'))
+    for _scope in _scopes:
+        _act = [d for d in _decls if d.get('scope') == _scope and not d.get('closed_at') and _ts(d['expires_at']) > _now]
+        if not _act:
+            print('GUARD: no ACTIVE site-integrity declaration for scope', _scope)
+            print('Run: python3 ~/workspace/site-integrity/declare.py add %s --hours 2 --note "<what>"' % _scope)
+            _si_sys.exit(1)
+    print('site-integrity declaration active for', ', '.join(_scopes), '- proceeding')
+def _si_certify(_scope):
+    _cmd = [_si_sys.executable, '/home/hatch/workspace/site-integrity/deploy_signed_client.py', _scope,
+            '--surface', 'vm', '--token-file', '/home/hatch/workspace/site-integrity/.sign_token']
+    _r = _si_sp.run(_cmd, capture_output=True, text=True)
+    print((_r.stdout or '').strip())
+    if _r.returncode != 0:
+        print('CERTIFY FAILED (exit %s): %s' % (_r.returncode, (_r.stderr or '').strip()[:400]))
+        print('Deploy is live but UNCERTIFIED - certify manually, then close the declaration.')
+    else:
+        print('Reminder: python3 ~/workspace/site-integrity/declare.py close', _scope)
+
 # route name -> file in site/
 ASSETS = {
     "index": "index.html",
@@ -92,6 +126,7 @@ def cf(method, path, data=None, headers=None):
 
 
 def deploy():
+    _si_guard([SCRIPT])
     build()
     boundary = "----mk" + uuid.uuid4().hex
     parts = []
@@ -137,6 +172,7 @@ def deploy():
                                        "environment": "production", "zone_id": ZONE}).encode(),
                       headers={"Content-Type": "application/json"})
         print(f"domain {host}:", st, str(resp)[:300])
+    _si_certify(SCRIPT)
 
 
 def verify():
