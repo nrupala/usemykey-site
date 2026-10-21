@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Releases — MyKey release log</title>
+<meta name="description" content="Every MyKey release: what changed, and the testing record that shipped with it.">
+<link rel="canonical" href="https://usemykey.com/releases">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MyKey">
+<meta property="og:title" content="MyKey releases">
+<meta property="og:description" content="What changed in each release, with its testing record.">
+<meta property="og:url" content="https://usemykey.com/releases">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="logo" href="/">My<span>Key</span></a>
+  <nav class="main">
+    <a href="/download">Download</a>
+    <a href="/buy">Buy a licence</a>
+    <a href="/support">Support</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+  </nav>
+</div></header>
+<main><div class="wrap">
+
+<h1>Releases</h1>
+<p class="lede">Every release of MyKey, what changed in it, and how it was tested. The testing record is part of the release — a release without one is not finished. Thank you to everyone who runs MyKey and tells us what breaks.</p>
+
+<h2>2026-10-21 — This website, in the standard shape</h2>
+<p>What changed:</p>
+<ul>
+  <li>The seller strip now closes every page of this site: who sells MyKey, who processes payments, and links to Pricing, Terms, Privacy, Releases and Contact.</li>
+  <li>The Buy page gains <strong>Buying, in plain terms</strong>: who you buy from, what the licence is and where it lives, how refunds work, and links to the privacy policy and this log.</li>
+  <li>This release log opens, with the back record below.</li>
+</ul>
+<p><strong>Testing record:</strong> after publishing, every page was fetched and checked live — the strip present on all pages, the plain-terms section on the Buy page, and this page serving — alongside the standing page checks in the site's build tooling.</p>
+
+<h2>2026-10-19 — Billing, hardened: one payment, one licence</h2>
+<p>What changed:</p>
+<ul>
+  <li>The order recorder behind the Stripe webhook is now write-once: a re-delivered payment event can never move an order backwards or mint a second licence for one payment. The issuer also dedupes by checkout session, so the same payment cannot be issued twice even if a run is interrupted halfway.</li>
+  <li>Chargebacks are handled end to end: a dispute flags the licence, a lost dispute revokes it as a chargeback, and a won dispute clears the flag. Refunds and disputes belonging to other products on the shared Stripe account are ignored — they write no MyKey records.</li>
+</ul>
+<p><strong>Testing record:</strong> desktop suite after the fix: 282 passed, 1 skipped, including 6 new issuer tests. A duplicate-delivery re-proof ran against the real deployed site and order store: the same verified payment event delivered twice left the order byte-identical and produced exactly one licence. Release gate (billing fittings): <strong>PASS WITH FINDINGS</strong>, with both findings — the idempotency gap and the dispute gap — recorded fixed.</p>
+
+<h2>2026-10-19 — Checkout opens</h2>
+<p>What changed:</p>
+<ul>
+  <li>Licence checkout is live on Stripe: pay what you want (US$49 preset, US$29 minimum) or a fixed US$29, plus the optional patron tips of US$5 or US$3 a month.</li>
+  <li>After payment, Stripe notifies this site, the order is recorded, and the licence key is minted under the licence authority and emailed to the buyer automatically. A refund marks the licence revoked in the registry.</li>
+</ul>
+<p><strong>Testing record:</strong> the purchase cycle was exercised end to end in Stripe's test mode — payment, order recorded, key minted and emailed, refund, licence revoked — before the live switch. Desktop suite re-run on file: 276 passed, 1 skipped. The live Stripe products, prices and payment links were read back from Stripe and confirmed live. Release gate (billing fittings): <strong>PASS WITH FINDINGS</strong>.</p>
+
+<h2>2026-10-14 — Android 1.4.0: your vault has a home</h2>
+<p>What changed:</p>
+<ul>
+  <li>Give your vault a home: pick a folder once — for example in your cloud drive — and MyKey keeps the encrypted vault file there, updated on every save. Uninstalling the app no longer takes your vault with it, and a reinstall offers to open the vault found in its folder. If the copies ever disagree, you are asked at unlock; nothing is overwritten on a guess.</li>
+  <li>Permanent release signing: the Android app is now signed with the company's permanent release key, so updates install in place. (Builds from the throwaway-signed test days need one final fresh install.)</li>
+  <li>The new MyKey mark — the refined key — in every icon and as this site's favicon.</li>
+  <li>“Help and questions” moved up on the locked screen, above the fold, where a locked-out user can see it.</li>
+</ul>
+<p><strong>Testing record:</strong> this is the client measured by the product's first release gate (2026-10-15), run in clean environments: the phone/web client suite ran 194 tests, all passed (16 files), and its production build was clean. The served APK's SHA-256 matched the published value, its signing certificate is the company's permanent release key, and the app requests no INTERNET permission. Gate verdict for the product: <strong>PASS WITH FINDINGS</strong> — no Critical, no High.</p>
+
+<h2>2026-10-13 — Desktop 2.2.0 · Android 1.3.0: the whole vault</h2>
+<p>What changed:</p>
+<ul>
+  <li>Vault v3: every entry is encrypted under its own key. An authorized agent gets a scoped key that cannot decrypt anything outside its scope — enforced by the encryption itself, not by a promise in the code.</li>
+  <li>Sync through your own cloud folder, and two-factor backup packages (your recovery phrase plus a one-time backup code, together). Devices, folders and backup targets are paired by fingerprint, inside the encrypted vault.</li>
+  <li>The licence: free up to 50 passwords and 4 connections, with every safety feature included; a signed one-time key unlocks unlimited passwords and 20 connections.</li>
+  <li>Passkeys kept in the vault, password age and rotation dates, built-in help and FAQ, the browser extension, and Android autofill.</li>
+  <li>Desktop downloads published: the Windows app and CLI and the Linux bundle, with a SHA-256 checksums file. The builds are unsigned — the Download page says so, in plain words.</li>
+</ul>
+<p><strong>Testing record:</strong> from the projects' own changelogs: the agent-access round ran 89 tests in a fresh environment; the full desktop suite stood at 241 passed, 1 skipped after the packaging fixes; the Windows build was built and smoke-tested on a real Windows 11 machine; the phone client's backup packages were cross-checked — opened by the desktop engine — in both directions. The same software was then measured end to end by the 2026-10-15 release gate: desktop suite 276 passed, 1 skipped in a fresh environment, the shipped 2.2.0 code itself 209 passed, and a 9-of-9 tamper battery plus a licence-forgery battery were rejected on every attempt.</p>
+
+<h2>2026-10-13 — This website opens</h2>
+<p>What changed: the first public version of usemykey.com — Home, Download, Buy, Recover, Support &amp; FAQ, Privacy, Terms — with Android APK 1.2.0. Checkout was not open yet; it opened on 2026-10-19 (above).</p>
+<p><strong>Testing record:</strong> no separate testing record was kept for launch day. The first full record is the release gate of 2026-10-15 (above). The gap is stated here rather than papered over.</p>
+
+</div></main>
+<footer class="site"><div class="wrap">
+  <p>Sold by <strong>2351485 ALBERTA INC.</strong> (AIMLDS) &middot; Payments by Stripe &middot; <a href="/buy">Pricing</a> &middot; <a href="/terms">Terms</a> &middot; <a href="/privacy">Privacy</a> &middot; <a href="/releases">Releases</a> &middot; <a href="/support">Contact</a></p>
+  <nav>
+    <a href="/download">Download</a>
+    <a href="/buy">Buy a licence</a>
+    <a href="/recover">Recover my licence</a>
+    <a href="/support">Support &amp; FAQ</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+  </nav>
+  <p>MyKey is sold by <strong>2351485 ALBERTA INC.</strong>, Calgary, Alberta, Canada. Support: <a href="mailto:info@aimlds.org">info@aimlds.org</a></p>
+  <p>Owned by <a href="https://nrupalakolkar.com">Nrupal Akolkar</a> · Built with <a href="https://muse.ai/join">Muse by Meta</a> — join Muse, then redeem code <strong>101EEK</strong> in Settings within 48 hours of joining and we both earn tokens.</p>
+</div></footer>
+</body>
+</html>
