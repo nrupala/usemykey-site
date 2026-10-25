@@ -46,6 +46,7 @@
   <li>Chargebacks are handled end to end: a dispute flags the licence, a lost dispute revokes it as a chargeback, and a won dispute clears the flag. Refunds and disputes belonging to other products on the shared Stripe account are ignored — they write no MyKey records.</li>
 </ul>
 <p><strong>Testing record:</strong> desktop suite after the fix: 282 passed, 1 skipped, including 6 new issuer tests. A duplicate-delivery re-proof ran against the real deployed site and order store: the same verified payment event delivered twice left the order byte-identical and produced exactly one licence. Release gate (billing fittings): <strong>PASS WITH FINDINGS</strong>, with both findings — the idempotency gap and the dispute gap — recorded fixed.</p>
+<p><strong>Release gate: GRADUATED — RELEASE, 2026-10-24 (early graduation on completed evidence; register row 22).</strong></p>
 
 <h2>2026-10-19 — Checkout opens</h2>
 <p>What changed:</p>
