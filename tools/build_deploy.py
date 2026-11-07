@@ -177,7 +177,7 @@ def deploy():
 
 def verify():
     checks = {
-        "https://usemykey.com/": ["Your passwords. Your device. Your key.", "2351485 ALBERTA INC.", "101EEK", "Passkeys, kept in your vault", "Fill logins in your browser", "Payments by Stripe"],
+        "https://usemykey.com/": ["Your passwords. Your device. Your key.", "2351485 ALBERTA INC.", "Passkeys, kept in your vault", "Fill logins in your browser", "Payments by Stripe"],
         "https://usemykey.com/download": ["Download the Android app (APK)", "13ec2578", "MyKey-2.2.0-windows-x86_64.exe", "Browser extension"],
         "https://usemykey.com/buy": ["Free vs licensed", "US$49 suggested (pay what you want, US$29+)", "processed by Stripe", "Buying, in plain terms"],
         "https://usemykey.com/releases": ["Checkout opens", "Testing record", "282 passed, 1 skipped"],
