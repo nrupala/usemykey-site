@@ -1,0 +1,4526 @@
+{
+  "schema_version": "2.0",
+  "profile_id": "code",
+  "profile_version": "1.0.0",
+  "graph_class": "truths",
+  "provenance_summary": {
+    "extracted_truth": 246
+  },
+  "nodes": [
+    {
+      "id": "external::\"\\n\".join",
+      "kind": "external",
+      "label": "\"\\n\".join",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::', '.join",
+      "kind": "external",
+      "label": "', '.join",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::(_r.stderr or '').strip",
+      "kind": "external",
+      "label": "(_r.stderr or '').strip",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::(_r.stdout or '').strip",
+      "kind": "external",
+      "label": "(_r.stdout or '').strip",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::(function () {\n  var cfg = window.MYKEY_CONFIG || {};\n  if (!cfg.checkoutLive || !cfg.stripe || !cfg.stripe.links) return;\n  var off = document.getElementById(\"checkout-off\");\n  var on = document.getElementById(\"checkout-on\");\n  if (!on) return;\n  if (off) off.style.display = \"none\";\n  on.style.display = \"block\";\n\n  var links = {\n    \"buy-licence-suggested\": cfg.stripe.links.licenceSuggested,\n    \"buy-licence-floor\": cfg.stripe.links.licenceFloor,\n    \"buy-tip-5\": cfg.stripe.links.tip5,\n    \"buy-tip-3\": cfg.stripe.links.tip3\n  };\n  Object.keys(links).forEach(function (id) {\n    var el = document.getElementById(id);\n    if (el) {\n      el.addEventListener(\"click\", function () {\n        window.location.href = links[id];\n      });\n    }\n  });\n\n  /* Stripe sends buyers back to /buy?checkout=success (licence)\n   * or /buy?tip=thanks (patron tip) after payment. */\n  var q = new URLSearchParams(window.location.search);\n  if (q.get(\"checkout\") === \"success\") {\n    var paid = document.getElementById(\"paid-note\");\n    if (paid) paid.style.display = \"block\";\n  }\n  if (q.get(\"tip\") === \"thanks\") {\n    var tip = document.getElementById(\"tip-note\");\n    if (tip) tip.style.display = \"block\";\n  }\n})",
+      "kind": "external",
+      "label": "(function () {\n  var cfg = window.MYKEY_CONFIG || {};\n  if (!cfg.checkoutLive || !cfg.stripe || !cfg.stripe.links) return;\n  var off = document.getElementById(\"checkout-off\");\n  var on = document.getElementById(\"checkout-on\");\n  if (!on) return;\n  if (off) off.style.display = \"none\";\n  on.style.display = \"block\";\n\n  var links = {\n    \"buy-licence-suggested\": cfg.stripe.links.licenceSuggested,\n    \"buy-licence-floor\": cfg.stripe.links.licenceFloor,\n    \"buy-tip-5\": cfg.stripe.links.tip5,\n    \"buy-tip-3\": cfg.stripe.links.tip3\n  };\n  Object.keys(links).forEach(function (id) {\n    var el = document.getElementById(id);\n    if (el) {\n      el.addEventListener(\"click\", function () {\n        window.location.href = links[id];\n      });\n    }\n  });\n\n  /* Stripe sends buyers back to /buy?checkout=success (licence)\n   * or /buy?tip=thanks (patron tip) after payment. */\n  var q = new URLSearchParams(window.location.search);\n  if (q.get(\"checkout\") === \"success\") {\n    var paid = document.getElementById(\"paid-note\");\n    if (paid) paid.style.display = \"block\";\n  }\n  if (q.get(\"tip\") === \"thanks\") {\n    var tip = document.getElementById(\"tip-note\");\n    if (tip) tip.style.display = \"block\";\n  }\n})",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::ASSETS.items",
+      "kind": "external",
+      "label": "ASSETS.items",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::Date",
+      "kind": "external",
+      "label": "Date",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::Date.now",
+      "kind": "external",
+      "label": "Date.now",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::JSON.parse",
+      "kind": "external",
+      "label": "JSON.parse",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::JSON.stringify",
+      "kind": "external",
+      "label": "JSON.stringify",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::Math.abs",
+      "kind": "external",
+      "label": "Math.abs",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::Number.isFinite",
+      "kind": "external",
+      "label": "Number.isFinite",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::Object.keys",
+      "kind": "external",
+      "label": "Object.keys",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::Object.keys(links).forEach",
+      "kind": "external",
+      "label": "Object.keys(links).forEach",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::Response",
+      "kind": "external",
+      "label": "Response",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::Response.redirect",
+      "kind": "external",
+      "label": "Response.redirect",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::TextEncoder",
+      "kind": "external",
+      "label": "TextEncoder",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::URL",
+      "kind": "external",
+      "label": "URL",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::URLSearchParams",
+      "kind": "external",
+      "label": "URLSearchParams",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::Uint8Array",
+      "kind": "external",
+      "label": "Uint8Array",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::[...new Uint8Array(sig)]\n    .map",
+      "kind": "external",
+      "label": "[...new Uint8Array(sig)]\n    .map",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::[...new Uint8Array(sig)]\n    .map((b) => b.toString(16).padStart(2, \"0\")).join",
+      "kind": "external",
+      "label": "[...new Uint8Array(sig)]\n    .map((b) => b.toString(16).padStart(2, \"0\")).join",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::_s.replace",
+      "kind": "external",
+      "label": "_s.replace",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::_si_dt.datetime.fromisoformat",
+      "kind": "external",
+      "label": "_si_dt.datetime.fromisoformat",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::_si_dt.datetime.now",
+      "kind": "external",
+      "label": "_si_dt.datetime.now",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::_si_json.load",
+      "kind": "external",
+      "label": "_si_json.load",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::_si_sp.run",
+      "kind": "external",
+      "label": "_si_sp.run",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::_si_sys.exit",
+      "kind": "external",
+      "label": "_si_sys.exit",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::a.charCodeAt",
+      "kind": "external",
+      "label": "a.charCodeAt",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::add_surrogate_to_request",
+      "kind": "external",
+      "label": "add_surrogate_to_request",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::b.charCodeAt",
+      "kind": "external",
+      "label": "b.charCodeAt",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::b.toString",
+      "kind": "external",
+      "label": "b.toString",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::b.toString(16).padStart",
+      "kind": "external",
+      "label": "b.toString(16).padStart",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::bindings.append",
+      "kind": "external",
+      "label": "bindings.append",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::checks.items",
+      "kind": "external",
+      "label": "checks.items",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::crypto.subtle.importKey",
+      "kind": "external",
+      "label": "crypto.subtle.importKey",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::crypto.subtle.sign",
+      "kind": "external",
+      "label": "crypto.subtle.sign",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::d.get",
+      "kind": "external",
+      "label": "d.get",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::datetime",
+      "kind": "external",
+      "label": "datetime",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::disp.encode",
+      "kind": "external",
+      "label": "disp.encode",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::document.getElementById",
+      "kind": "external",
+      "label": "document.getElementById",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::dynamic_credentials",
+      "kind": "external",
+      "label": "dynamic_credentials",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::e.headers.get",
+      "kind": "external",
+      "label": "e.headers.get",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::e.read",
+      "kind": "external",
+      "label": "e.read",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::e.read()[:800].decode",
+      "kind": "external",
+      "label": "e.read()[:800].decode",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::el.addEventListener",
+      "kind": "external",
+      "label": "el.addEventListener",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::enc.encode",
+      "kind": "external",
+      "label": "enc.encode",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::env.MYKEY_ORDERS.get",
+      "kind": "external",
+      "label": "env.MYKEY_ORDERS.get",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::env.MYKEY_ORDERS.list",
+      "kind": "external",
+      "label": "env.MYKEY_ORDERS.list",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::env.MYKEY_ORDERS.put",
+      "kind": "external",
+      "label": "env.MYKEY_ORDERS.put",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::f\"--{boundary}--\\r\\n\".encode",
+      "kind": "external",
+      "label": "f\"--{boundary}--\\r\\n\".encode",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::f\"--{boundary}\\r\\n\".encode",
+      "kind": "external",
+      "label": "f\"--{boundary}\\r\\n\".encode",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::f\"Content-Type: {ctype}\\r\\n\\r\\n\".encode",
+      "kind": "external",
+      "label": "f\"Content-Type: {ctype}\\r\\n\\r\\n\".encode",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::fh.read",
+      "kind": "external",
+      "label": "fh.read",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::fh.write",
+      "kind": "external",
+      "label": "fh.write",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::header.split",
+      "kind": "external",
+      "label": "header.split",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::imports.append",
+      "kind": "external",
+      "label": "imports.append",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::json",
+      "kind": "external",
+      "label": "json",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::json.dumps",
+      "kind": "external",
+      "label": "json.dumps",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::json.dumps(metadata).encode",
+      "kind": "external",
+      "label": "json.dumps(metadata).encode",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::json.dumps({\"hostname\": host, \"service\": SCRIPT,\n                                       \"environment\": \"production\", \"zone_id\": ZONE}).encode",
+      "kind": "external",
+      "label": "json.dumps({\"hostname\": host, \"service\": SCRIPT,\n                                       \"environment\": \"production\", \"zone_id\": ZONE}).encode",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::len",
+      "kind": "external",
+      "label": "len",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::lines.append",
+      "kind": "external",
+      "label": "lines.append",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::new Date().toISOString",
+      "kind": "external",
+      "label": "new Date().toISOString",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::open",
+      "kind": "external",
+      "label": "open",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::os",
+      "kind": "external",
+      "label": "os",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::os.environ.get",
+      "kind": "external",
+      "label": "os.environ.get",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::os.listdir",
+      "kind": "external",
+      "label": "os.listdir",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::os.makedirs",
+      "kind": "external",
+      "label": "os.makedirs",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::os.path.abspath",
+      "kind": "external",
+      "label": "os.path.abspath",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::os.path.dirname",
+      "kind": "external",
+      "label": "os.path.dirname",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::os.path.join",
+      "kind": "external",
+      "label": "os.path.join",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::os.remove",
+      "kind": "external",
+      "label": "os.remove",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::parseInt",
+      "kind": "external",
+      "label": "parseInt",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::part.split",
+      "kind": "external",
+      "label": "part.split",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::parts.append",
+      "kind": "external",
+      "label": "parts.append",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::path.endsWith",
+      "kind": "external",
+      "label": "path.endsWith",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::path.slice",
+      "kind": "external",
+      "label": "path.slice",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::print",
+      "kind": "external",
+      "label": "print",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::q.get",
+      "kind": "external",
+      "label": "q.get",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::re",
+      "kind": "external",
+      "label": "re",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::read_json_response",
+      "kind": "external",
+      "label": "read_json_response",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::request.headers.get",
+      "kind": "external",
+      "label": "request.headers.get",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::request.text",
+      "kind": "external",
+      "label": "request.text",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::resp.read",
+      "kind": "external",
+      "label": "resp.read",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::resp.read().decode",
+      "kind": "external",
+      "label": "resp.read().decode",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::signatures.push",
+      "kind": "external",
+      "label": "signatures.push",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::signatures.some",
+      "kind": "external",
+      "label": "signatures.some",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::sorted",
+      "kind": "external",
+      "label": "sorted",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::str",
+      "kind": "external",
+      "label": "str",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::subprocess",
+      "kind": "external",
+      "label": "subprocess",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::sys",
+      "kind": "external",
+      "label": "sys",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::sys.exit",
+      "kind": "external",
+      "label": "sys.exit",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::sys.path.insert",
+      "kind": "external",
+      "label": "sys.path.insert",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::type.startsWith",
+      "kind": "external",
+      "label": "type.startsWith",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::urllib",
+      "kind": "external",
+      "label": "urllib",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::urllib.request.Request",
+      "kind": "external",
+      "label": "urllib.request.Request",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::urllib.request.build_opener",
+      "kind": "external",
+      "label": "urllib.request.build_opener",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::urllib.request.build_opener(NoRedirect).open",
+      "kind": "external",
+      "label": "urllib.request.build_opener(NoRedirect).open",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::urllib.request.urlopen",
+      "kind": "external",
+      "label": "urllib.request.urlopen",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::uuid",
+      "kind": "external",
+      "label": "uuid",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::uuid.uuid4",
+      "kind": "external",
+      "label": "uuid.uuid4",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::worker.replace",
+      "kind": "external",
+      "label": "worker.replace",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "external::{\"build\": build, \"deploy\": deploy, \"verify\": verify}[cmd]",
+      "kind": "external",
+      "label": "{\"build\": build, \"deploy\": deploy, \"verify\": verify}[cmd]",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "usemykey-site",
+      "kind": "package",
+      "label": "usemykey-site",
+      "loc": {
+        "file": "",
+        "line": 0
+      },
+      "tier": "core",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "usemykey-site::/CHANGELOG.md",
+      "kind": "file",
+      "label": "CHANGELOG.md",
+      "loc": {
+        "file": "CHANGELOG.md",
+        "line": 1
+      },
+      "tier": "core",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "usemykey-site::/CONTRIBUTING.md",
+      "kind": "file",
+      "label": "CONTRIBUTING.md",
+      "loc": {
+        "file": "CONTRIBUTING.md",
+        "line": 1
+      },
+      "tier": "core",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "usemykey-site::/README.md",
+      "kind": "file",
+      "label": "README.md",
+      "loc": {
+        "file": "README.md",
+        "line": 1
+      },
+      "tier": "core",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "usemykey-site::/site/checkout.js",
+      "kind": "file",
+      "label": "site/checkout.js",
+      "loc": {
+        "file": "site/checkout.js",
+        "line": 1
+      },
+      "tier": "core",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "usemykey-site::/site/config.js",
+      "kind": "file",
+      "label": "site/config.js",
+      "loc": {
+        "file": "site/config.js",
+        "line": 1
+      },
+      "tier": "core",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "usemykey-site::/tools/build_deploy.py",
+      "kind": "file",
+      "label": "tools/build_deploy.py",
+      "loc": {
+        "file": "tools/build_deploy.py",
+        "line": 1
+      },
+      "tier": "core",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "usemykey-site::/worker.js",
+      "kind": "file",
+      "label": "worker.js",
+      "loc": {
+        "file": "worker.js",
+        "line": 1
+      },
+      "tier": "core",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "usemykey-site::CHANGELOG",
+      "kind": "module",
+      "label": "usemykey-site::CHANGELOG",
+      "loc": {
+        "file": "CHANGELOG.md",
+        "line": 1
+      },
+      "tier": "core",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "usemykey-site::CHANGELOG::CHANGELOG",
+      "kind": "doc",
+      "label": "CHANGELOG",
+      "loc": {
+        "file": "CHANGELOG.md",
+        "line": 1
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "usemykey-site::CONTRIBUTING",
+      "kind": "module",
+      "label": "usemykey-site::CONTRIBUTING",
+      "loc": {
+        "file": "CONTRIBUTING.md",
+        "line": 1
+      },
+      "tier": "core",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "usemykey-site::CONTRIBUTING::CONTRIBUTING",
+      "kind": "doc",
+      "label": "CONTRIBUTING",
+      "loc": {
+        "file": "CONTRIBUTING.md",
+        "line": 1
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "usemykey-site::README",
+      "kind": "module",
+      "label": "usemykey-site::README",
+      "loc": {
+        "file": "README.md",
+        "line": 1
+      },
+      "tier": "core",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "usemykey-site::README::README",
+      "kind": "doc",
+      "label": "README",
+      "loc": {
+        "file": "README.md",
+        "line": 1
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "usemykey-site::site::checkout",
+      "kind": "module",
+      "label": "usemykey-site::site::checkout",
+      "loc": {
+        "file": "site/checkout.js",
+        "line": 1
+      },
+      "tier": "core",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "usemykey-site::site::config",
+      "kind": "module",
+      "label": "usemykey-site::site::config",
+      "loc": {
+        "file": "site/config.js",
+        "line": 1
+      },
+      "tier": "core",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "usemykey-site::tools::build_deploy",
+      "kind": "module",
+      "label": "usemykey-site::tools::build_deploy",
+      "loc": {
+        "file": "tools/build_deploy.py",
+        "line": 1
+      },
+      "tier": "core",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "usemykey-site::tools::build_deploy::ACCOUNT",
+      "kind": "variable",
+      "label": "ACCOUNT",
+      "loc": {
+        "file": "tools/build_deploy.py",
+        "line": 33
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": [],
+      "end_line": 33,
+      "signature": "ACCOUNT"
+    },
+    {
+      "id": "usemykey-site::tools::build_deploy::ASSETS",
+      "kind": "variable",
+      "label": "ASSETS",
+      "loc": {
+        "file": "tools/build_deploy.py",
+        "line": 72
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": [],
+      "end_line": 90,
+      "signature": "ASSETS"
+    },
+    {
+      "id": "usemykey-site::tools::build_deploy::DIST",
+      "kind": "variable",
+      "label": "DIST",
+      "loc": {
+        "file": "tools/build_deploy.py",
+        "line": 32
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": [
+        "ROOT",
+        "os"
+      ],
+      "end_line": 32,
+      "signature": "DIST"
+    },
+    {
+      "id": "usemykey-site::tools::build_deploy::ROOT",
+      "kind": "variable",
+      "label": "ROOT",
+      "loc": {
+        "file": "tools/build_deploy.py",
+        "line": 30
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": [
+        "__file__",
+        "os"
+      ],
+      "end_line": 30,
+      "signature": "ROOT"
+    },
+    {
+      "id": "usemykey-site::tools::build_deploy::SCRIPT",
+      "kind": "variable",
+      "label": "SCRIPT",
+      "loc": {
+        "file": "tools/build_deploy.py",
+        "line": 35
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": [],
+      "end_line": 35,
+      "signature": "SCRIPT"
+    },
+    {
+      "id": "usemykey-site::tools::build_deploy::SITE",
+      "kind": "variable",
+      "label": "SITE",
+      "loc": {
+        "file": "tools/build_deploy.py",
+        "line": 31
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": [
+        "ROOT",
+        "os"
+      ],
+      "end_line": 31,
+      "signature": "SITE"
+    },
+    {
+      "id": "usemykey-site::tools::build_deploy::ZONE",
+      "kind": "variable",
+      "label": "ZONE",
+      "loc": {
+        "file": "tools/build_deploy.py",
+        "line": 34
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": [],
+      "end_line": 34,
+      "signature": "ZONE"
+    },
+    {
+      "id": "usemykey-site::tools::build_deploy::_si_certify",
+      "kind": "function",
+      "label": "_si_certify",
+      "loc": {
+        "file": "tools/build_deploy.py",
+        "line": 60
+      },
+      "tier": "optional",
+      "defines": [
+        "_cmd",
+        "_r",
+        "_scope"
+      ],
+      "refs": [
+        "_si_sp",
+        "_si_sys",
+        "capture_output",
+        "print",
+        "text"
+      ],
+      "end_line": 69,
+      "signature": "def _si_certify(_scope)",
+      "decisions": 3
+    },
+    {
+      "id": "usemykey-site::tools::build_deploy::_si_guard",
+      "kind": "function",
+      "label": "_si_guard",
+      "loc": {
+        "file": "tools/build_deploy.py",
+        "line": 46
+      },
+      "tier": "optional",
+      "defines": [
+        "_act",
+        "_decls",
+        "_e",
+        "_now",
+        "_scope",
+        "_scopes",
+        "d"
+      ],
+      "refs": [
+        "Exception",
+        "_si_dt",
+        "_si_json",
+        "_si_sys",
+        "_ts",
+        "open",
+        "print"
+      ],
+      "end_line": 59,
+      "signature": "def _si_guard(_scopes)",
+      "decisions": 7
+    },
+    {
+      "id": "usemykey-site::tools::build_deploy::_si_guard::_ts",
+      "kind": "function",
+      "label": "_ts",
+      "loc": {
+        "file": "tools/build_deploy.py",
+        "line": 52
+      },
+      "tier": "optional",
+      "defines": [
+        "_s"
+      ],
+      "refs": [
+        "_si_dt"
+      ],
+      "end_line": 52,
+      "signature": "def _ts(_s)",
+      "decisions": 0
+    },
+    {
+      "id": "usemykey-site::tools::build_deploy::build",
+      "kind": "function",
+      "label": "build",
+      "loc": {
+        "file": "tools/build_deploy.py",
+        "line": 93
+      },
+      "tier": "optional",
+      "defines": [
+        "f",
+        "fh",
+        "imports",
+        "lines",
+        "mod",
+        "text",
+        "worker"
+      ],
+      "refs": [
+        "ASSETS",
+        "DIST",
+        "ROOT",
+        "SITE",
+        "encoding",
+        "exist_ok",
+        "fname",
+        "json",
+        "len",
+        "name",
+        "open",
+        "os",
+        "print"
+      ],
+      "end_line": 113,
+      "signature": "def build()",
+      "decisions": 2
+    },
+    {
+      "id": "usemykey-site::tools::build_deploy::cf",
+      "kind": "function",
+      "label": "cf",
+      "loc": {
+        "file": "tools/build_deploy.py",
+        "line": 116
+      },
+      "tier": "optional",
+      "defines": [
+        "data",
+        "e",
+        "headers",
+        "method",
+        "path",
+        "req",
+        "resp"
+      ],
+      "refs": [
+        "add_surrogate_to_request",
+        "allowed_hosts",
+        "read_json_response",
+        "urllib"
+      ],
+      "end_line": 125,
+      "signature": "def cf(method, path, data=None, headers=None)",
+      "decisions": 2
+    },
+    {
+      "id": "usemykey-site::tools::build_deploy::cmd",
+      "kind": "variable",
+      "label": "cmd",
+      "loc": {
+        "file": "tools/build_deploy.py",
+        "line": 231
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": [
+        "len",
+        "sys"
+      ],
+      "end_line": 231,
+      "signature": "cmd"
+    },
+    {
+      "id": "usemykey-site::tools::build_deploy::deploy",
+      "kind": "function",
+      "label": "deploy",
+      "loc": {
+        "file": "tools/build_deploy.py",
+        "line": 128
+      },
+      "tier": "optional",
+      "defines": [
+        "bindings",
+        "body",
+        "boundary",
+        "disp",
+        "fh",
+        "fname",
+        "host",
+        "kv_id",
+        "metadata",
+        "parts"
+      ],
+      "refs": [
+        "ACCOUNT",
+        "DIST",
+        "SCRIPT",
+        "ZONE",
+        "_si_certify",
+        "_si_guard",
+        "build",
+        "cf",
+        "ctype",
+        "data",
+        "filename",
+        "headers",
+        "json",
+        "name",
+        "open",
+        "os",
+        "print",
+        "resp",
+        "sorted",
+        "st",
+        "str",
+        "sys",
+        "uuid"
+      ],
+      "end_line": 175,
+      "signature": "def deploy()",
+      "decisions": 6
+    },
+    {
+      "id": "usemykey-site::tools::build_deploy::verify",
+      "kind": "function",
+      "label": "verify",
+      "loc": {
+        "file": "tools/build_deploy.py",
+        "line": 178
+      },
+      "tier": "optional",
+      "defines": [
+        "body",
+        "checks",
+        "e",
+        "loc",
+        "m",
+        "missing",
+        "ok",
+        "req",
+        "resp",
+        "status"
+      ],
+      "refs": [
+        "Exception",
+        "NoRedirect",
+        "headers",
+        "markers",
+        "print",
+        "str",
+        "sys",
+        "timeout",
+        "url",
+        "urllib"
+      ],
+      "end_line": 227,
+      "signature": "def verify()",
+      "decisions": 14
+    },
+    {
+      "id": "usemykey-site::tools::build_deploy::verify::NoRedirect",
+      "kind": "class",
+      "label": "NoRedirect",
+      "loc": {
+        "file": "tools/build_deploy.py",
+        "line": 215
+      },
+      "tier": "recommended",
+      "defines": [],
+      "refs": [],
+      "end_line": 217,
+      "signature": "class NoRedirect(urllib.request.HTTPRedirectHandler)"
+    },
+    {
+      "id": "usemykey-site::tools::build_deploy::verify::NoRedirect::redirect_request",
+      "kind": "method",
+      "label": "redirect_request",
+      "loc": {
+        "file": "tools/build_deploy.py",
+        "line": 216
+      },
+      "tier": "optional",
+      "defines": [
+        "a",
+        "self"
+      ],
+      "refs": [],
+      "end_line": 217,
+      "signature": "def redirect_request(self, *a)",
+      "decisions": 0
+    },
+    {
+      "id": "usemykey-site::worker",
+      "kind": "module",
+      "label": "usemykey-site::worker",
+      "loc": {
+        "file": "worker.js",
+        "line": 1
+      },
+      "tier": "core",
+      "defines": [],
+      "refs": []
+    },
+    {
+      "id": "usemykey-site::worker::DOWNLOAD_FILES",
+      "kind": "variable",
+      "label": "DOWNLOAD_FILES",
+      "loc": {
+        "file": "worker.js",
+        "line": 30
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": [],
+      "end_line": 36,
+      "signature": "DOWNLOAD_FILES"
+    },
+    {
+      "id": "usemykey-site::worker::RAW_DOWNLOADS",
+      "kind": "variable",
+      "label": "RAW_DOWNLOADS",
+      "loc": {
+        "file": "worker.js",
+        "line": 29
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": [],
+      "end_line": 29,
+      "signature": "RAW_DOWNLOADS"
+    },
+    {
+      "id": "usemykey-site::worker::ROUTES",
+      "kind": "variable",
+      "label": "ROUTES",
+      "loc": {
+        "file": "worker.js",
+        "line": 6
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": [],
+      "end_line": 23,
+      "signature": "ROUTES"
+    },
+    {
+      "id": "usemykey-site::worker::WEBHOOK_TOLERANCE_SECS",
+      "kind": "variable",
+      "label": "WEBHOOK_TOLERANCE_SECS",
+      "loc": {
+        "file": "worker.js",
+        "line": 70
+      },
+      "tier": "optional",
+      "defines": [],
+      "refs": [],
+      "end_line": 70,
+      "signature": "WEBHOOK_TOLERANCE_SECS"
+    },
+    {
+      "id": "usemykey-site::worker::fetch",
+      "kind": "function",
+      "label": "fetch",
+      "loc": {
+        "file": "worker.js",
+        "line": 259
+      },
+      "tier": "optional",
+      "defines": [
+        "request",
+        "env",
+        "url",
+        "path",
+        "downloadFile",
+        "clean",
+        "route",
+        "headers",
+        "name",
+        "type",
+        "isHtml"
+      ],
+      "refs": [
+        "URL",
+        "Response",
+        "handleStripeWebhook",
+        "DOWNLOAD_FILES",
+        "RAW_DOWNLOADS",
+        "ROUTES",
+        "ASSETS"
+      ],
+      "end_line": 300,
+      "signature": "async fetch(request, env)",
+      "decisions": 12
+    },
+    {
+      "id": "usemykey-site::worker::getJson",
+      "kind": "function",
+      "label": "getJson",
+      "loc": {
+        "file": "worker.js",
+        "line": 106
+      },
+      "tier": "optional",
+      "defines": [
+        "env",
+        "key",
+        "raw"
+      ],
+      "refs": [
+        "JSON"
+      ],
+      "end_line": 114,
+      "signature": "async function getJson(env, key)",
+      "decisions": 2
+    },
+    {
+      "id": "usemykey-site::worker::handleStripeWebhook",
+      "kind": "function",
+      "label": "handleStripeWebhook",
+      "loc": {
+        "file": "worker.js",
+        "line": 139
+      },
+      "tier": "optional",
+      "defines": [
+        "request",
+        "env",
+        "body",
+        "event",
+        "secret",
+        "ok",
+        "livemode",
+        "s",
+        "meta",
+        "key",
+        "existing",
+        "order",
+        "c",
+        "sessionId",
+        "rec",
+        "d",
+        "which"
+      ],
+      "refs": [
+        "Response",
+        "JSON",
+        "verifyStripeSignature",
+        "Date",
+        "sessionForPaymentIntent"
+      ],
+      "end_line": 256,
+      "signature": "async function handleStripeWebhook(request, env)",
+      "decisions": 40
+    },
+    {
+      "id": "usemykey-site::worker::hmacSha256Hex",
+      "kind": "function",
+      "label": "hmacSha256Hex",
+      "loc": {
+        "file": "worker.js",
+        "line": 72
+      },
+      "tier": "optional",
+      "defines": [
+        "secret",
+        "message",
+        "enc",
+        "key",
+        "sig",
+        "b"
+      ],
+      "refs": [
+        "TextEncoder",
+        "crypto",
+        "Uint8Array"
+      ],
+      "end_line": 80,
+      "signature": "async function hmacSha256Hex(secret, message)",
+      "decisions": 0
+    },
+    {
+      "id": "usemykey-site::worker::sessionForPaymentIntent",
+      "kind": "function",
+      "label": "sessionForPaymentIntent",
+      "loc": {
+        "file": "worker.js",
+        "line": 122
+      },
+      "tier": "optional",
+      "defines": [
+        "env",
+        "paymentIntent",
+        "indexed",
+        "list",
+        "order"
+      ],
+      "refs": [
+        "k",
+        "getJson"
+      ],
+      "end_line": 137,
+      "signature": "async function sessionForPaymentIntent(env, paymentIntent)",
+      "decisions": 6
+    },
+    {
+      "id": "usemykey-site::worker::timingSafeEqual",
+      "kind": "function",
+      "label": "timingSafeEqual",
+      "loc": {
+        "file": "worker.js",
+        "line": 82
+      },
+      "tier": "optional",
+      "defines": [
+        "a",
+        "b",
+        "diff",
+        "i"
+      ],
+      "refs": [],
+      "end_line": 87,
+      "signature": "function timingSafeEqual(a, b)",
+      "decisions": 2
+    },
+    {
+      "id": "usemykey-site::worker::verifyStripeSignature",
+      "kind": "function",
+      "label": "verifyStripeSignature",
+      "loc": {
+        "file": "worker.js",
+        "line": 89
+      },
+      "tier": "optional",
+      "defines": [
+        "body",
+        "header",
+        "secret",
+        "timestamp",
+        "signatures",
+        "k",
+        "v",
+        "ts",
+        "expected",
+        "s"
+      ],
+      "refs": [
+        "part",
+        "parseInt",
+        "Number",
+        "Math",
+        "Date",
+        "WEBHOOK_TOLERANCE_SECS",
+        "hmacSha256Hex",
+        "timingSafeEqual"
+      ],
+      "end_line": 104,
+      "signature": "async function verifyStripeSignature(body, header, secret)",
+      "decisions": 8
+    }
+  ],
+  "edges": [
+    {
+      "from": "usemykey-site",
+      "to": "usemykey-site::CHANGELOG",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site",
+      "to": "usemykey-site::CONTRIBUTING",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site",
+      "to": "usemykey-site::README",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site",
+      "to": "usemykey-site::site::checkout",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site",
+      "to": "usemykey-site::site::config",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site",
+      "to": "usemykey-site::tools::build_deploy",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site",
+      "to": "usemykey-site::worker",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/CHANGELOG.md",
+      "to": "usemykey-site::CHANGELOG::CHANGELOG",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/CONTRIBUTING.md",
+      "to": "usemykey-site::CONTRIBUTING::CONTRIBUTING",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/README.md",
+      "to": "usemykey-site::README::README",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/tools/build_deploy.py",
+      "to": "usemykey-site::tools::build_deploy::ACCOUNT",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/tools/build_deploy.py",
+      "to": "usemykey-site::tools::build_deploy::ASSETS",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/tools/build_deploy.py",
+      "to": "usemykey-site::tools::build_deploy::DIST",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/tools/build_deploy.py",
+      "to": "usemykey-site::tools::build_deploy::ROOT",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/tools/build_deploy.py",
+      "to": "usemykey-site::tools::build_deploy::SCRIPT",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/tools/build_deploy.py",
+      "to": "usemykey-site::tools::build_deploy::SITE",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/tools/build_deploy.py",
+      "to": "usemykey-site::tools::build_deploy::ZONE",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/tools/build_deploy.py",
+      "to": "usemykey-site::tools::build_deploy::_si_certify",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/tools/build_deploy.py",
+      "to": "usemykey-site::tools::build_deploy::_si_guard",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/tools/build_deploy.py",
+      "to": "usemykey-site::tools::build_deploy::_si_guard::_ts",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/tools/build_deploy.py",
+      "to": "usemykey-site::tools::build_deploy::build",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/tools/build_deploy.py",
+      "to": "usemykey-site::tools::build_deploy::cf",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/tools/build_deploy.py",
+      "to": "usemykey-site::tools::build_deploy::cmd",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/tools/build_deploy.py",
+      "to": "usemykey-site::tools::build_deploy::deploy",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/tools/build_deploy.py",
+      "to": "usemykey-site::tools::build_deploy::verify",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/tools/build_deploy.py",
+      "to": "usemykey-site::tools::build_deploy::verify::NoRedirect",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/tools/build_deploy.py",
+      "to": "usemykey-site::tools::build_deploy::verify::NoRedirect::redirect_request",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/worker.js",
+      "to": "usemykey-site::worker::DOWNLOAD_FILES",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/worker.js",
+      "to": "usemykey-site::worker::RAW_DOWNLOADS",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/worker.js",
+      "to": "usemykey-site::worker::ROUTES",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/worker.js",
+      "to": "usemykey-site::worker::WEBHOOK_TOLERANCE_SECS",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/worker.js",
+      "to": "usemykey-site::worker::fetch",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/worker.js",
+      "to": "usemykey-site::worker::getJson",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/worker.js",
+      "to": "usemykey-site::worker::handleStripeWebhook",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/worker.js",
+      "to": "usemykey-site::worker::hmacSha256Hex",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/worker.js",
+      "to": "usemykey-site::worker::sessionForPaymentIntent",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/worker.js",
+      "to": "usemykey-site::worker::timingSafeEqual",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::/worker.js",
+      "to": "usemykey-site::worker::verifyStripeSignature",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::CHANGELOG",
+      "to": "usemykey-site::/CHANGELOG.md",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::CONTRIBUTING",
+      "to": "usemykey-site::/CONTRIBUTING.md",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::README",
+      "to": "usemykey-site::/README.md",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::site::checkout",
+      "to": "external::(function () {\n  var cfg = window.MYKEY_CONFIG || {};\n  if (!cfg.checkoutLive || !cfg.stripe || !cfg.stripe.links) return;\n  var off = document.getElementById(\"checkout-off\");\n  var on = document.getElementById(\"checkout-on\");\n  if (!on) return;\n  if (off) off.style.display = \"none\";\n  on.style.display = \"block\";\n\n  var links = {\n    \"buy-licence-suggested\": cfg.stripe.links.licenceSuggested,\n    \"buy-licence-floor\": cfg.stripe.links.licenceFloor,\n    \"buy-tip-5\": cfg.stripe.links.tip5,\n    \"buy-tip-3\": cfg.stripe.links.tip3\n  };\n  Object.keys(links).forEach(function (id) {\n    var el = document.getElementById(id);\n    if (el) {\n      el.addEventListener(\"click\", function () {\n        window.location.href = links[id];\n      });\n    }\n  });\n\n  /* Stripe sends buyers back to /buy?checkout=success (licence)\n   * or /buy?tip=thanks (patron tip) after payment. */\n  var q = new URLSearchParams(window.location.search);\n  if (q.get(\"checkout\") === \"success\") {\n    var paid = document.getElementById(\"paid-note\");\n    if (paid) paid.style.display = \"block\";\n  }\n  if (q.get(\"tip\") === \"thanks\") {\n    var tip = document.getElementById(\"tip-note\");\n    if (tip) tip.style.display = \"block\";\n  }\n})",
+      "kind": "calls",
+      "line": 7,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::site::checkout",
+      "to": "external::Object.keys",
+      "kind": "calls",
+      "line": 22,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::site::checkout",
+      "to": "external::Object.keys(links).forEach",
+      "kind": "calls",
+      "line": 22,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::site::checkout",
+      "to": "external::URLSearchParams",
+      "kind": "calls",
+      "line": 33,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::site::checkout",
+      "to": "external::document.getElementById",
+      "kind": "calls",
+      "line": 10,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::site::checkout",
+      "to": "external::el.addEventListener",
+      "kind": "calls",
+      "line": 25,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::site::checkout",
+      "to": "external::q.get",
+      "kind": "calls",
+      "line": 34,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::site::checkout",
+      "to": "usemykey-site::/site/checkout.js",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::site::config",
+      "to": "usemykey-site::/site/config.js",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy",
+      "to": "external::datetime",
+      "kind": "imports",
+      "line": 45,
+      "attrs": {
+        "bindings": [
+          "_si_dt"
+        ]
+      }
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy",
+      "to": "external::dynamic_credentials",
+      "kind": "imports",
+      "line": 28,
+      "attrs": {
+        "bindings": [
+          "add_surrogate_to_request",
+          "read_json_response"
+        ]
+      }
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy",
+      "to": "external::json",
+      "kind": "imports",
+      "line": 19,
+      "attrs": {
+        "bindings": [
+          "_si_json",
+          "json"
+        ]
+      }
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy",
+      "to": "external::len",
+      "kind": "calls",
+      "line": 231,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy",
+      "to": "external::os",
+      "kind": "imports",
+      "line": 20,
+      "attrs": {
+        "bindings": [
+          "os"
+        ]
+      }
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy",
+      "to": "external::os.path.abspath",
+      "kind": "calls",
+      "line": 30,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy",
+      "to": "external::os.path.dirname",
+      "kind": "calls",
+      "line": 30,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy",
+      "to": "external::os.path.join",
+      "kind": "calls",
+      "line": 31,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy",
+      "to": "external::re",
+      "kind": "imports",
+      "line": 21,
+      "attrs": {
+        "bindings": [
+          "re"
+        ]
+      }
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy",
+      "to": "external::subprocess",
+      "kind": "imports",
+      "line": 45,
+      "attrs": {
+        "bindings": [
+          "_si_sp"
+        ]
+      }
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy",
+      "to": "external::sys",
+      "kind": "imports",
+      "line": 22,
+      "attrs": {
+        "bindings": [
+          "_si_sys",
+          "sys"
+        ]
+      }
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy",
+      "to": "external::sys.path.insert",
+      "kind": "calls",
+      "line": 27,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy",
+      "to": "external::urllib",
+      "kind": "imports",
+      "line": 23,
+      "attrs": {
+        "bindings": [
+          "urllib"
+        ]
+      }
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy",
+      "to": "external::uuid",
+      "kind": "imports",
+      "line": 25,
+      "attrs": {
+        "bindings": [
+          "uuid"
+        ]
+      }
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy",
+      "to": "external::{\"build\": build, \"deploy\": deploy, \"verify\": verify}[cmd]",
+      "kind": "calls",
+      "line": 232,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy",
+      "to": "usemykey-site::/tools/build_deploy.py",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::DIST",
+      "to": "external::os",
+      "kind": "reads",
+      "line": 32,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::DIST",
+      "to": "usemykey-site::tools::build_deploy::ROOT",
+      "kind": "reads",
+      "line": 32,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::ROOT",
+      "to": "external::os",
+      "kind": "reads",
+      "line": 30,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::SITE",
+      "to": "external::os",
+      "kind": "reads",
+      "line": 31,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::SITE",
+      "to": "usemykey-site::tools::build_deploy::ROOT",
+      "kind": "reads",
+      "line": 31,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::_si_certify",
+      "to": "external::(_r.stderr or '').strip",
+      "kind": "calls",
+      "line": 66,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::_si_certify",
+      "to": "external::(_r.stdout or '').strip",
+      "kind": "calls",
+      "line": 64,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::_si_certify",
+      "to": "external::_si_sp.run",
+      "kind": "calls",
+      "line": 63,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::_si_certify",
+      "to": "external::print",
+      "kind": "calls",
+      "line": 64,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::_si_certify",
+      "to": "external::print",
+      "kind": "reads",
+      "line": 60,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::_si_guard",
+      "to": "external::', '.join",
+      "kind": "calls",
+      "line": 59,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::_si_guard",
+      "to": "external::_si_dt.datetime.now",
+      "kind": "calls",
+      "line": 51,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::_si_guard",
+      "to": "external::_si_json.load",
+      "kind": "calls",
+      "line": 48,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::_si_guard",
+      "to": "external::_si_sys.exit",
+      "kind": "calls",
+      "line": 50,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::_si_guard",
+      "to": "external::d.get",
+      "kind": "calls",
+      "line": 54,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::_si_guard",
+      "to": "external::open",
+      "kind": "calls",
+      "line": 48,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::_si_guard",
+      "to": "external::open",
+      "kind": "reads",
+      "line": 46,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::_si_guard",
+      "to": "external::print",
+      "kind": "calls",
+      "line": 50,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::_si_guard",
+      "to": "external::print",
+      "kind": "reads",
+      "line": 46,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::_si_guard",
+      "to": "usemykey-site::tools::build_deploy::_si_guard::_ts",
+      "kind": "calls",
+      "line": 54,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::_si_guard",
+      "to": "usemykey-site::tools::build_deploy::_si_guard::_ts",
+      "kind": "reads",
+      "line": 46,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::_si_guard::_ts",
+      "to": "external::_s.replace",
+      "kind": "calls",
+      "line": 52,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::_si_guard::_ts",
+      "to": "external::_si_dt.datetime.fromisoformat",
+      "kind": "calls",
+      "line": 52,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::build",
+      "to": "external::\"\\n\".join",
+      "kind": "calls",
+      "line": 110,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::build",
+      "to": "external::ASSETS.items",
+      "kind": "calls",
+      "line": 99,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::build",
+      "to": "external::fh.read",
+      "kind": "calls",
+      "line": 101,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::build",
+      "to": "external::fh.write",
+      "kind": "calls",
+      "line": 104,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::build",
+      "to": "external::imports.append",
+      "kind": "calls",
+      "line": 105,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::build",
+      "to": "external::json",
+      "kind": "reads",
+      "line": 93,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::build",
+      "to": "external::json.dumps",
+      "kind": "calls",
+      "line": 104,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::build",
+      "to": "external::len",
+      "kind": "calls",
+      "line": 113,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::build",
+      "to": "external::len",
+      "kind": "reads",
+      "line": 93,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::build",
+      "to": "external::lines.append",
+      "kind": "calls",
+      "line": 106,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::build",
+      "to": "external::open",
+      "kind": "calls",
+      "line": 100,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::build",
+      "to": "external::open",
+      "kind": "reads",
+      "line": 93,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::build",
+      "to": "external::os",
+      "kind": "reads",
+      "line": 93,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::build",
+      "to": "external::os.listdir",
+      "kind": "calls",
+      "line": 95,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::build",
+      "to": "external::os.makedirs",
+      "kind": "calls",
+      "line": 94,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::build",
+      "to": "external::os.path.join",
+      "kind": "calls",
+      "line": 96,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::build",
+      "to": "external::os.remove",
+      "kind": "calls",
+      "line": 96,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::build",
+      "to": "external::print",
+      "kind": "calls",
+      "line": 113,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::build",
+      "to": "external::print",
+      "kind": "reads",
+      "line": 93,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::build",
+      "to": "external::worker.replace",
+      "kind": "calls",
+      "line": 110,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::build",
+      "to": "usemykey-site::tools::build_deploy::ASSETS",
+      "kind": "reads",
+      "line": 93,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::build",
+      "to": "usemykey-site::tools::build_deploy::DIST",
+      "kind": "reads",
+      "line": 93,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::build",
+      "to": "usemykey-site::tools::build_deploy::ROOT",
+      "kind": "reads",
+      "line": 93,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::build",
+      "to": "usemykey-site::tools::build_deploy::SITE",
+      "kind": "reads",
+      "line": 93,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::build",
+      "to": "usemykey-site::worker",
+      "kind": "defines",
+      "line": 93,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::build",
+      "to": "usemykey-site::worker",
+      "kind": "writes",
+      "line": 93,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::cf",
+      "to": "external::add_surrogate_to_request",
+      "kind": "calls",
+      "line": 120,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::cf",
+      "to": "external::add_surrogate_to_request",
+      "kind": "reads",
+      "line": 116,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::cf",
+      "to": "external::e.read",
+      "kind": "calls",
+      "line": 125,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::cf",
+      "to": "external::e.read()[:800].decode",
+      "kind": "calls",
+      "line": 125,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::cf",
+      "to": "external::read_json_response",
+      "kind": "calls",
+      "line": 123,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::cf",
+      "to": "external::read_json_response",
+      "kind": "reads",
+      "line": 116,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::cf",
+      "to": "external::urllib",
+      "kind": "reads",
+      "line": 116,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::cf",
+      "to": "external::urllib.request.Request",
+      "kind": "calls",
+      "line": 117,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::cf",
+      "to": "external::urllib.request.urlopen",
+      "kind": "calls",
+      "line": 122,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::cmd",
+      "to": "external::len",
+      "kind": "reads",
+      "line": 231,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::cmd",
+      "to": "external::sys",
+      "kind": "reads",
+      "line": 231,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::bindings.append",
+      "kind": "calls",
+      "line": 142,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::disp.encode",
+      "kind": "calls",
+      "line": 160,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::f\"--{boundary}--\\r\\n\".encode",
+      "kind": "calls",
+      "line": 163,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::f\"--{boundary}\\r\\n\".encode",
+      "kind": "calls",
+      "line": 156,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::f\"Content-Type: {ctype}\\r\\n\\r\\n\".encode",
+      "kind": "calls",
+      "line": 161,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::fh.read",
+      "kind": "calls",
+      "line": 153,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::json",
+      "kind": "reads",
+      "line": 128,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::json.dumps",
+      "kind": "calls",
+      "line": 150,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::json.dumps(metadata).encode",
+      "kind": "calls",
+      "line": 150,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::json.dumps({\"hostname\": host, \"service\": SCRIPT,\n                                       \"environment\": \"production\", \"zone_id\": ZONE}).encode",
+      "kind": "calls",
+      "line": 171,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::open",
+      "kind": "calls",
+      "line": 152,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::open",
+      "kind": "reads",
+      "line": 128,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::os",
+      "kind": "reads",
+      "line": 128,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::os.environ.get",
+      "kind": "calls",
+      "line": 140,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::os.listdir",
+      "kind": "calls",
+      "line": 151,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::os.path.join",
+      "kind": "calls",
+      "line": 152,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::parts.append",
+      "kind": "calls",
+      "line": 150,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::print",
+      "kind": "calls",
+      "line": 145,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::print",
+      "kind": "reads",
+      "line": 128,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::sorted",
+      "kind": "calls",
+      "line": 151,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::sorted",
+      "kind": "reads",
+      "line": 128,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::str",
+      "kind": "calls",
+      "line": 166,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::str",
+      "kind": "reads",
+      "line": 128,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::sys",
+      "kind": "reads",
+      "line": 128,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::sys.exit",
+      "kind": "calls",
+      "line": 168,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::uuid",
+      "kind": "reads",
+      "line": 128,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "external::uuid.uuid4",
+      "kind": "calls",
+      "line": 131,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "usemykey-site::tools::build_deploy::ACCOUNT",
+      "kind": "reads",
+      "line": 128,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "usemykey-site::tools::build_deploy::DIST",
+      "kind": "reads",
+      "line": 128,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "usemykey-site::tools::build_deploy::SCRIPT",
+      "kind": "reads",
+      "line": 128,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "usemykey-site::tools::build_deploy::ZONE",
+      "kind": "reads",
+      "line": 128,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "usemykey-site::tools::build_deploy::_si_certify",
+      "kind": "calls",
+      "line": 175,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "usemykey-site::tools::build_deploy::_si_certify",
+      "kind": "reads",
+      "line": 128,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "usemykey-site::tools::build_deploy::_si_guard",
+      "kind": "calls",
+      "line": 129,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "usemykey-site::tools::build_deploy::_si_guard",
+      "kind": "reads",
+      "line": 128,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "usemykey-site::tools::build_deploy::build",
+      "kind": "calls",
+      "line": 130,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "usemykey-site::tools::build_deploy::build",
+      "kind": "reads",
+      "line": 128,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "usemykey-site::tools::build_deploy::cf",
+      "kind": "calls",
+      "line": 164,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::deploy",
+      "to": "usemykey-site::tools::build_deploy::cf",
+      "kind": "reads",
+      "line": 128,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::verify",
+      "to": "external::checks.items",
+      "kind": "calls",
+      "line": 194,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::verify",
+      "to": "external::e.headers.get",
+      "kind": "calls",
+      "line": 223,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::verify",
+      "to": "external::print",
+      "kind": "calls",
+      "line": 207,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::verify",
+      "to": "external::print",
+      "kind": "reads",
+      "line": 178,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::verify",
+      "to": "external::resp.read",
+      "kind": "calls",
+      "line": 204,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::verify",
+      "to": "external::resp.read().decode",
+      "kind": "calls",
+      "line": 204,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::verify",
+      "to": "external::str",
+      "kind": "calls",
+      "line": 212,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::verify",
+      "to": "external::str",
+      "kind": "reads",
+      "line": 178,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::verify",
+      "to": "external::sys",
+      "kind": "reads",
+      "line": 178,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::verify",
+      "to": "external::sys.exit",
+      "kind": "calls",
+      "line": 227,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::verify",
+      "to": "external::urllib",
+      "kind": "reads",
+      "line": 178,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::verify",
+      "to": "external::urllib.request.Request",
+      "kind": "calls",
+      "line": 199,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::verify",
+      "to": "external::urllib.request.build_opener",
+      "kind": "calls",
+      "line": 219,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::verify",
+      "to": "external::urllib.request.build_opener(NoRedirect).open",
+      "kind": "calls",
+      "line": 219,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::verify",
+      "to": "external::urllib.request.urlopen",
+      "kind": "calls",
+      "line": 203,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::tools::build_deploy::verify",
+      "to": "usemykey-site::tools::build_deploy::verify::NoRedirect",
+      "kind": "reads",
+      "line": 178,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker",
+      "to": "usemykey-site::/worker.js",
+      "kind": "contains",
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::fetch",
+      "to": "external::Response",
+      "kind": "calls",
+      "line": 266,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::fetch",
+      "to": "external::Response",
+      "kind": "reads",
+      "line": 259,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::fetch",
+      "to": "external::Response.redirect",
+      "kind": "calls",
+      "line": 276,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::fetch",
+      "to": "external::URL",
+      "kind": "calls",
+      "line": 260,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::fetch",
+      "to": "external::URL",
+      "kind": "reads",
+      "line": 259,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::fetch",
+      "to": "external::path.endsWith",
+      "kind": "calls",
+      "line": 262,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::fetch",
+      "to": "external::path.slice",
+      "kind": "calls",
+      "line": 262,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::fetch",
+      "to": "external::type.startsWith",
+      "kind": "calls",
+      "line": 296,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::fetch",
+      "to": "usemykey-site::tools::build_deploy::ASSETS",
+      "kind": "reads",
+      "line": 259,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::fetch",
+      "to": "usemykey-site::worker::DOWNLOAD_FILES",
+      "kind": "reads",
+      "line": 259,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::fetch",
+      "to": "usemykey-site::worker::RAW_DOWNLOADS",
+      "kind": "reads",
+      "line": 259,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::fetch",
+      "to": "usemykey-site::worker::ROUTES",
+      "kind": "reads",
+      "line": 259,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::fetch",
+      "to": "usemykey-site::worker::handleStripeWebhook",
+      "kind": "calls",
+      "line": 268,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::fetch",
+      "to": "usemykey-site::worker::handleStripeWebhook",
+      "kind": "reads",
+      "line": 259,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::getJson",
+      "to": "external::JSON.parse",
+      "kind": "calls",
+      "line": 110,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::getJson",
+      "to": "external::env.MYKEY_ORDERS.get",
+      "kind": "calls",
+      "line": 107,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::handleStripeWebhook",
+      "to": "external::Date",
+      "kind": "calls",
+      "line": 186,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::handleStripeWebhook",
+      "to": "external::Date",
+      "kind": "reads",
+      "line": 139,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::handleStripeWebhook",
+      "to": "external::JSON.parse",
+      "kind": "calls",
+      "line": 146,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::handleStripeWebhook",
+      "to": "external::JSON.stringify",
+      "kind": "calls",
+      "line": 189,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::handleStripeWebhook",
+      "to": "external::Response",
+      "kind": "calls",
+      "line": 141,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::handleStripeWebhook",
+      "to": "external::Response",
+      "kind": "reads",
+      "line": 139,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::handleStripeWebhook",
+      "to": "external::env.MYKEY_ORDERS.get",
+      "kind": "calls",
+      "line": 172,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::handleStripeWebhook",
+      "to": "external::env.MYKEY_ORDERS.put",
+      "kind": "calls",
+      "line": 189,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::handleStripeWebhook",
+      "to": "external::new Date().toISOString",
+      "kind": "calls",
+      "line": 186,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::handleStripeWebhook",
+      "to": "external::request.headers.get",
+      "kind": "calls",
+      "line": 157,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::handleStripeWebhook",
+      "to": "external::request.text",
+      "kind": "calls",
+      "line": 143,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::handleStripeWebhook",
+      "to": "usemykey-site::worker::sessionForPaymentIntent",
+      "kind": "calls",
+      "line": 202,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::handleStripeWebhook",
+      "to": "usemykey-site::worker::sessionForPaymentIntent",
+      "kind": "reads",
+      "line": 139,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::handleStripeWebhook",
+      "to": "usemykey-site::worker::verifyStripeSignature",
+      "kind": "calls",
+      "line": 156,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::handleStripeWebhook",
+      "to": "usemykey-site::worker::verifyStripeSignature",
+      "kind": "reads",
+      "line": 139,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::hmacSha256Hex",
+      "to": "external::TextEncoder",
+      "kind": "calls",
+      "line": 73,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::hmacSha256Hex",
+      "to": "external::TextEncoder",
+      "kind": "reads",
+      "line": 72,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::hmacSha256Hex",
+      "to": "external::Uint8Array",
+      "kind": "calls",
+      "line": 78,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::hmacSha256Hex",
+      "to": "external::Uint8Array",
+      "kind": "reads",
+      "line": 72,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::hmacSha256Hex",
+      "to": "external::[...new Uint8Array(sig)]\n    .map",
+      "kind": "calls",
+      "line": 78,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::hmacSha256Hex",
+      "to": "external::[...new Uint8Array(sig)]\n    .map((b) => b.toString(16).padStart(2, \"0\")).join",
+      "kind": "calls",
+      "line": 78,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::hmacSha256Hex",
+      "to": "external::b.toString",
+      "kind": "calls",
+      "line": 79,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::hmacSha256Hex",
+      "to": "external::b.toString(16).padStart",
+      "kind": "calls",
+      "line": 79,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::hmacSha256Hex",
+      "to": "external::crypto.subtle.importKey",
+      "kind": "calls",
+      "line": 74,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::hmacSha256Hex",
+      "to": "external::crypto.subtle.sign",
+      "kind": "calls",
+      "line": 77,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::hmacSha256Hex",
+      "to": "external::enc.encode",
+      "kind": "calls",
+      "line": 75,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::sessionForPaymentIntent",
+      "to": "external::env.MYKEY_ORDERS.get",
+      "kind": "calls",
+      "line": 124,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::sessionForPaymentIntent",
+      "to": "external::env.MYKEY_ORDERS.list",
+      "kind": "calls",
+      "line": 126,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::sessionForPaymentIntent",
+      "to": "external::env.MYKEY_ORDERS.put",
+      "kind": "calls",
+      "line": 131,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::sessionForPaymentIntent",
+      "to": "usemykey-site::worker::getJson",
+      "kind": "calls",
+      "line": 128,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::sessionForPaymentIntent",
+      "to": "usemykey-site::worker::getJson",
+      "kind": "reads",
+      "line": 122,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::timingSafeEqual",
+      "to": "external::a.charCodeAt",
+      "kind": "calls",
+      "line": 85,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::timingSafeEqual",
+      "to": "external::b.charCodeAt",
+      "kind": "calls",
+      "line": 85,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::verifyStripeSignature",
+      "to": "external::Date",
+      "kind": "reads",
+      "line": 89,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::verifyStripeSignature",
+      "to": "external::Date.now",
+      "kind": "calls",
+      "line": 101,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::verifyStripeSignature",
+      "to": "external::Math.abs",
+      "kind": "calls",
+      "line": 101,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::verifyStripeSignature",
+      "to": "external::Number.isFinite",
+      "kind": "calls",
+      "line": 100,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::verifyStripeSignature",
+      "to": "external::header.split",
+      "kind": "calls",
+      "line": 93,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::verifyStripeSignature",
+      "to": "external::parseInt",
+      "kind": "calls",
+      "line": 99,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::verifyStripeSignature",
+      "to": "external::parseInt",
+      "kind": "reads",
+      "line": 89,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::verifyStripeSignature",
+      "to": "external::part.split",
+      "kind": "calls",
+      "line": 94,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::verifyStripeSignature",
+      "to": "external::signatures.push",
+      "kind": "calls",
+      "line": 96,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::verifyStripeSignature",
+      "to": "external::signatures.some",
+      "kind": "calls",
+      "line": 103,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::verifyStripeSignature",
+      "to": "usemykey-site::worker::WEBHOOK_TOLERANCE_SECS",
+      "kind": "reads",
+      "line": 89,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::verifyStripeSignature",
+      "to": "usemykey-site::worker::hmacSha256Hex",
+      "kind": "calls",
+      "line": 102,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::verifyStripeSignature",
+      "to": "usemykey-site::worker::hmacSha256Hex",
+      "kind": "reads",
+      "line": 89,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::verifyStripeSignature",
+      "to": "usemykey-site::worker::timingSafeEqual",
+      "kind": "calls",
+      "line": 103,
+      "attrs": {}
+    },
+    {
+      "from": "usemykey-site::worker::verifyStripeSignature",
+      "to": "usemykey-site::worker::timingSafeEqual",
+      "kind": "reads",
+      "line": 89,
+      "attrs": {}
+    }
+  ],
+  "audit_head": "cf6a49ff94f94f3977205174b2a8bcf5b8724dbb38b34028ef17ae33b70bd91e",
+  "audit_log": [
+    {
+      "seq": 0,
+      "ts": "1795021907",
+      "op": "genesis",
+      "payload": "{}",
+      "prev_hash": "GENESIS",
+      "hash": "ca246e61faac98d1fba26c272516ee429e63b1ea5ff778df49cffadc3a046a0f"
+    },
+    {
+      "seq": 1,
+      "ts": "1795021907",
+      "op": "index_started",
+      "payload": "{\"package\":\"usemykey-site\",\"repo\":\"/home/hatch/workspace/codetopo-work/PROFILES-GM-GATE-2026-11-18/work/usemykey-site\"}",
+      "prev_hash": "ca246e61faac98d1fba26c272516ee429e63b1ea5ff778df49cffadc3a046a0f",
+      "hash": "5513fe1c427a3399c87d33f5e257a71aa38dbeed2a84efbe2298c0027de721b1"
+    },
+    {
+      "seq": 2,
+      "ts": "1795021907",
+      "op": "index_finished",
+      "payload": "{\"diagnostics\":95,\"edges\":246,\"files_failed\":0,\"files_indexed\":7,\"nodes\":150}",
+      "prev_hash": "5513fe1c427a3399c87d33f5e257a71aa38dbeed2a84efbe2298c0027de721b1",
+      "hash": "cf6a49ff94f94f3977205174b2a8bcf5b8724dbb38b34028ef17ae33b70bd91e"
+    }
+  ],
+  "diagnostics": [
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::site::checkout",
+        "target": "(function () {\n  var cfg = window.MYKEY_CONFIG || {};\n  if (!cfg.checkoutLive || !cfg.stripe || !cfg.stripe.links) return;\n  var off = document.getElementById(\"checkout-off\");\n  var on = document.getElementById(\"checkout-on\");\n  if (!on) return;\n  if (off) off.style.display = \"none\";\n  on.style.display = \"block\";\n\n  var links = {\n    \"buy-licence-suggested\": cfg.stripe.links.licenceSuggested,\n    \"buy-licence-floor\": cfg.stripe.links.licenceFloor,\n    \"buy-tip-5\": cfg.stripe.links.tip5,\n    \"buy-tip-3\": cfg.stripe.links.tip3\n  };\n  Object.keys(links).forEach(function (id) {\n    var el = document.getElementById(id);\n    if (el) {\n      el.addEventListener(\"click\", function () {\n        window.location.href = links[id];\n      });\n    }\n  });\n\n  /* Stripe sends buyers back to /buy?checkout=success (licence)\n   * or /buy?tip=thanks (patron tip) after payment. */\n  var q = new URLSearchParams(window.location.search);\n  if (q.get(\"checkout\") === \"success\") {\n    var paid = document.getElementById(\"paid-note\");\n    if (paid) paid.style.display = \"block\";\n  }\n  if (q.get(\"tip\") === \"thanks\") {\n    var tip = document.getElementById(\"tip-note\");\n    if (tip) tip.style.display = \"block\";\n  }\n})",
+        "line": 7
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::site::checkout",
+        "target": "Object.keys",
+        "line": 22
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::site::checkout",
+        "target": "Object.keys(links).forEach",
+        "line": 22
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::site::checkout",
+        "target": "URLSearchParams",
+        "line": 33
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::site::checkout",
+        "target": "document.getElementById",
+        "line": 10
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::site::checkout",
+        "target": "el.addEventListener",
+        "line": 25
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::site::checkout",
+        "target": "q.get",
+        "line": 34
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy",
+        "target": "os.path.abspath",
+        "line": 30
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy",
+        "target": "os.path.dirname",
+        "line": 30
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy",
+        "target": "os.path.join",
+        "line": 31
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy",
+        "target": "sys.path.insert",
+        "line": 27
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy",
+        "target": "{\"build\": build, \"deploy\": deploy, \"verify\": verify}[cmd]",
+        "line": 232
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::_si_certify",
+        "target": "(_r.stderr or '').strip",
+        "line": 66
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::_si_certify",
+        "target": "(_r.stdout or '').strip",
+        "line": 64
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::_si_certify",
+        "target": "_si_sp.run",
+        "line": 63
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::_si_guard",
+        "target": "', '.join",
+        "line": 59
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::_si_guard",
+        "target": "_si_dt.datetime.now",
+        "line": 51
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::_si_guard",
+        "target": "_si_json.load",
+        "line": 48
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::_si_guard",
+        "target": "_si_sys.exit",
+        "line": 50
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::_si_guard",
+        "target": "d.get",
+        "line": 54
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::_si_guard",
+        "target": "open",
+        "line": 48
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::_si_guard",
+        "target": "print",
+        "line": 50
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::_si_guard::_ts",
+        "target": "_s.replace",
+        "line": 52
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::_si_guard::_ts",
+        "target": "_si_dt.datetime.fromisoformat",
+        "line": 52
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::build",
+        "target": "\"\\n\".join",
+        "line": 110
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::build",
+        "target": "ASSETS.items",
+        "line": 99
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::build",
+        "target": "fh.read",
+        "line": 101
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::build",
+        "target": "fh.write",
+        "line": 104
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::build",
+        "target": "imports.append",
+        "line": 105
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::build",
+        "target": "json.dumps",
+        "line": 104
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::build",
+        "target": "len",
+        "line": 113
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::build",
+        "target": "lines.append",
+        "line": 106
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::build",
+        "target": "os.listdir",
+        "line": 95
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::build",
+        "target": "os.makedirs",
+        "line": 94
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::build",
+        "target": "os.remove",
+        "line": 96
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::build",
+        "target": "worker.replace",
+        "line": 110
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::cf",
+        "target": "add_surrogate_to_request",
+        "line": 120
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::cf",
+        "target": "e.read",
+        "line": 125
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::cf",
+        "target": "e.read()[:800].decode",
+        "line": 125
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::cf",
+        "target": "read_json_response",
+        "line": 123
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::cf",
+        "target": "urllib.request.Request",
+        "line": 117
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::cf",
+        "target": "urllib.request.urlopen",
+        "line": 122
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::deploy",
+        "target": "bindings.append",
+        "line": 142
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::deploy",
+        "target": "disp.encode",
+        "line": 160
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::deploy",
+        "target": "f\"--{boundary}--\\r\\n\".encode",
+        "line": 163
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::deploy",
+        "target": "f\"--{boundary}\\r\\n\".encode",
+        "line": 156
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::deploy",
+        "target": "f\"Content-Type: {ctype}\\r\\n\\r\\n\".encode",
+        "line": 161
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::deploy",
+        "target": "json.dumps(metadata).encode",
+        "line": 150
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::deploy",
+        "target": "json.dumps({\"hostname\": host, \"service\": SCRIPT,\n                                       \"environment\": \"production\", \"zone_id\": ZONE}).encode",
+        "line": 171
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::deploy",
+        "target": "os.environ.get",
+        "line": 140
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::deploy",
+        "target": "parts.append",
+        "line": 150
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::deploy",
+        "target": "sorted",
+        "line": 151
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::deploy",
+        "target": "str",
+        "line": 166
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::deploy",
+        "target": "sys.exit",
+        "line": 168
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::deploy",
+        "target": "uuid.uuid4",
+        "line": 131
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::verify",
+        "target": "checks.items",
+        "line": 194
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::verify",
+        "target": "e.headers.get",
+        "line": 223
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::verify",
+        "target": "resp.read",
+        "line": 204
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::verify",
+        "target": "resp.read().decode",
+        "line": 204
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::verify",
+        "target": "urllib.request.build_opener",
+        "line": 219
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::tools::build_deploy::verify",
+        "target": "urllib.request.build_opener(NoRedirect).open",
+        "line": 219
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::fetch",
+        "target": "Response.redirect",
+        "line": 276
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::fetch",
+        "target": "URL",
+        "line": 260
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::fetch",
+        "target": "path.endsWith",
+        "line": 262
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::fetch",
+        "target": "path.slice",
+        "line": 262
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::fetch",
+        "target": "type.startsWith",
+        "line": 296
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::getJson",
+        "target": "JSON.parse",
+        "line": 110
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::getJson",
+        "target": "env.MYKEY_ORDERS.get",
+        "line": 107
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::handleStripeWebhook",
+        "target": "Date",
+        "line": 186
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::handleStripeWebhook",
+        "target": "JSON.stringify",
+        "line": 189
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::handleStripeWebhook",
+        "target": "Response",
+        "line": 141
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::handleStripeWebhook",
+        "target": "new Date().toISOString",
+        "line": 186
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::handleStripeWebhook",
+        "target": "request.headers.get",
+        "line": 157
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::handleStripeWebhook",
+        "target": "request.text",
+        "line": 143
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::hmacSha256Hex",
+        "target": "TextEncoder",
+        "line": 73
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::hmacSha256Hex",
+        "target": "Uint8Array",
+        "line": 78
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::hmacSha256Hex",
+        "target": "[...new Uint8Array(sig)]\n    .map",
+        "line": 78
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::hmacSha256Hex",
+        "target": "[...new Uint8Array(sig)]\n    .map((b) => b.toString(16).padStart(2, \"0\")).join",
+        "line": 78
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::hmacSha256Hex",
+        "target": "b.toString",
+        "line": 79
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::hmacSha256Hex",
+        "target": "b.toString(16).padStart",
+        "line": 79
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::hmacSha256Hex",
+        "target": "crypto.subtle.importKey",
+        "line": 74
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::hmacSha256Hex",
+        "target": "crypto.subtle.sign",
+        "line": 77
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::hmacSha256Hex",
+        "target": "enc.encode",
+        "line": 75
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::sessionForPaymentIntent",
+        "target": "env.MYKEY_ORDERS.list",
+        "line": 126
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::sessionForPaymentIntent",
+        "target": "env.MYKEY_ORDERS.put",
+        "line": 131
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::timingSafeEqual",
+        "target": "a.charCodeAt",
+        "line": 85
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::timingSafeEqual",
+        "target": "b.charCodeAt",
+        "line": 85
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::verifyStripeSignature",
+        "target": "Date.now",
+        "line": 101
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::verifyStripeSignature",
+        "target": "Math.abs",
+        "line": 101
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::verifyStripeSignature",
+        "target": "Number.isFinite",
+        "line": 100
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::verifyStripeSignature",
+        "target": "header.split",
+        "line": 93
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::verifyStripeSignature",
+        "target": "parseInt",
+        "line": 99
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::verifyStripeSignature",
+        "target": "part.split",
+        "line": 94
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::verifyStripeSignature",
+        "target": "signatures.push",
+        "line": 96
+      }
+    },
+    {
+      "UnresolvedCall": {
+        "from": "usemykey-site::worker::verifyStripeSignature",
+        "target": "signatures.some",
+        "line": 103
+      }
+    }
+  ]
+}
